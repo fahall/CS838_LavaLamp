@@ -1,0 +1,192 @@
+scons: Entering directory `/home/d/Desktop/PhysBAM-CS838'
+scons: Reading SConscript files ...
+/home/d/Desktop/PhysBAM-CS838/SConstruct:376: SyntaxWarning: assertion is always true, perhaps remove parentheses?
+  assert(name.startswith('lib'),name)
+
+scons: warning: The Options class is deprecated; use the Variables class instead.
+File "/home/d/Desktop/PhysBAM-CS838/SConstruct", line 14, in <module>
+
+scons: warning: The EnumOption() function is deprecated; use the EnumVariable() function instead.
+File "/home/d/Desktop/PhysBAM-CS838/SConstruct", line 16, in <module>
+
+scons: warning: The BoolOption() function is deprecated; use the BoolVariable() function instead.
+File "/home/d/Desktop/PhysBAM-CS838/SConstruct", line 20, in <module>
+
+scons: warning: BuildDir() and the build_dir keyword have been deprecated;
+	use VariantDir() and the variant_dir keyword instead.
+File "/home/d/Desktop/PhysBAM-CS838/SConstruct", line 123, in <module>
+scons: done reading SConscript files.
+scons: Building targets ...
+scons: building associated VariantDir targets: build/nocona/release/Projects/userpgs/CS838_LavaLamp
+g++ -o build/nocona/release/Projects/userpgs/CS838_LavaLamp/LAYOUT.os -c -march=nocona -msse3 -mfpmath=sse -O3 -funroll-loops -Wall -Winit-self -Woverloaded-virtual -Wstrict-aliasing=2 -fno-strict-aliasing -fPIC -DNDEBUG -DCOMPILE_WITHOUT_DOUBLE_SUPPORT -DCOMPILE_WITHOUT_DYADIC_SUPPORT -DCOMPILE_WITHOUT_RLE_SUPPORT -DCOMPILE_WITHOUT_ZLIB_SUPPORT -DCOMPILE_ID_TYPES_AS_INT -IPublic_Library Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp
+Projects/userpgs/CS838_LavaLamp/LAYOUT.h: In constructor ‘PhysBAM::LAYOUT<TV>::LAYOUT(PhysBAM::STREAM_TYPE) [with TV = PhysBAM::VECTOR<float, 2>]’:
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:163:16:   instantiated from here
+Projects/userpgs/CS838_LavaLamp/LAYOUT.h:50:23: warning: ‘PhysBAM::LAYOUT<PhysBAM::VECTOR<float, 2> >::stream_type’ will be initialized after [-Wreorder]
+Projects/userpgs/CS838_LavaLamp/LAYOUT.h:27:7: warning:   ‘PhysBAM::LAYOUT<PhysBAM::VECTOR<float, 2> >::T PhysBAM::LAYOUT<PhysBAM::VECTOR<float, 2> >::initial_time’ [-Wreorder]
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:12:1: warning:   when initialized here [-Wreorder]
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:163:16:   instantiated from here
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:12:1: error: uninitialized member ‘PhysBAM::LAYOUT<PhysBAM::VECTOR<float, 2> >::frame_time’ with ‘const’ type ‘const T {aka const float}’ [-fpermissive]
+Projects/userpgs/CS838_LavaLamp/LAYOUT.h: In constructor ‘PhysBAM::LAYOUT<TV>::LAYOUT(PhysBAM::STREAM_TYPE) [with TV = PhysBAM::VECTOR<float, 3>]’:
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:164:16:   instantiated from here
+Projects/userpgs/CS838_LavaLamp/LAYOUT.h:50:23: warning: ‘PhysBAM::LAYOUT<PhysBAM::VECTOR<float, 3> >::stream_type’ will be initialized after [-Wreorder]
+Projects/userpgs/CS838_LavaLamp/LAYOUT.h:27:7: warning:   ‘PhysBAM::LAYOUT<PhysBAM::VECTOR<float, 3> >::T PhysBAM::LAYOUT<PhysBAM::VECTOR<float, 3> >::initial_time’ [-Wreorder]
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:12:1: warning:   when initialized here [-Wreorder]
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:164:16:   instantiated from here
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:12:1: error: uninitialized member ‘PhysBAM::LAYOUT<PhysBAM::VECTOR<float, 3> >::frame_time’ with ‘const’ type ‘const T {aka const float}’ [-fpermissive]
+In file included from Public_Library/PhysBAM_Tools/Read_Write/Data_Structures/READ_WRITE_ELEMENT_ID.h:12:0,
+                 from Public_Library/PhysBAM_Tools/Data_Structures/ELEMENT_ID.h:114,
+                 from Public_Library/PhysBAM_Tools/Vectors/VECTOR_BASE.h:11,
+                 from Public_Library/PhysBAM_Tools/Vectors/VECTOR_0D.h:12,
+                 from Public_Library/PhysBAM_Tools/Vectors/VECTOR_1D.h:22,
+                 from Public_Library/PhysBAM_Tools/Vectors/VECTOR_2D.h:22,
+                 from Public_Library/PhysBAM_Tools/Vectors/VECTOR_3D.h:18,
+                 from Public_Library/PhysBAM_Tools/Grids_Uniform/FACE_INDEX.h:10,
+                 from Public_Library/PhysBAM_Tools/Grids_Uniform/UNIFORM_GRID_ITERATOR_CELL.h:10,
+                 from Projects/userpgs/CS838_LavaLamp/LAYOUT.h:2,
+                 from Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:1:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Read(std::istream&, T&) [with T = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<2> >, RW = double, ENABLER = void, std::istream = std::basic_istream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:50:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_READ<T>::value>::TYPE PhysBAM::Read_Binary(PhysBAM::TYPED_ISTREAM&, T&) [with T = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<2> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_READ<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:154:94:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Read_From_File(PhysBAM::STREAM_TYPE, const string&, T1&) [with T1 = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<2> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:157:105:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Read_Output_Files(int) [with TV = PhysBAM::VECTOR<float, 2>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:163:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:99:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Read(std::istream&, T&) [with T = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<2> >, RW = float, ENABLER = void, std::istream = std::basic_istream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:52:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_READ<T>::value>::TYPE PhysBAM::Read_Binary(PhysBAM::TYPED_ISTREAM&, T&) [with T = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<2> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_READ<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:154:94:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Read_From_File(PhysBAM::STREAM_TYPE, const string&, T1&) [with T1 = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<2> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:157:105:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Read_Output_Files(int) [with TV = PhysBAM::VECTOR<float, 2>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:163:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:99:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Read(std::istream&, T&) [with T = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 2> >, RW = double, ENABLER = void, std::istream = std::basic_istream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:50:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_READ<T>::value>::TYPE PhysBAM::Read_Binary(PhysBAM::TYPED_ISTREAM&, T&) [with T = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 2> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_READ<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:154:94:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Read_From_File(PhysBAM::STREAM_TYPE, const string&, T1&) [with T1 = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 2> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:159:99:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Read_Output_Files(int) [with TV = PhysBAM::VECTOR<float, 2>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:163:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:99:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Read(std::istream&, T&) [with T = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 2> >, RW = float, ENABLER = void, std::istream = std::basic_istream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:52:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_READ<T>::value>::TYPE PhysBAM::Read_Binary(PhysBAM::TYPED_ISTREAM&, T&) [with T = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 2> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_READ<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:154:94:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Read_From_File(PhysBAM::STREAM_TYPE, const string&, T1&) [with T1 = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 2> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:159:99:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Read_Output_Files(int) [with TV = PhysBAM::VECTOR<float, 2>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:163:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:99:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Write(std::ostream&, const T&) [with T = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<2> >, RW = double, ENABLER = void, std::ostream = std::basic_ostream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:82:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE PhysBAM::Write_Binary(PhysBAM::TYPED_OSTREAM&, const T&) [with T = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<2> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:207:98:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Write_To_File(PhysBAM::STREAM_TYPE, const string&, const T1&) [with T1 = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<2> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:137:5:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Write_Output(int) const [with TV = PhysBAM::VECTOR<float, 2>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:163:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:102:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Write(std::ostream&, const T&) [with T = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<2> >, RW = float, ENABLER = void, std::ostream = std::basic_ostream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:84:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE PhysBAM::Write_Binary(PhysBAM::TYPED_OSTREAM&, const T&) [with T = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<2> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:207:98:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Write_To_File(PhysBAM::STREAM_TYPE, const string&, const T1&) [with T1 = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<2> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:137:5:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Write_Output(int) const [with TV = PhysBAM::VECTOR<float, 2>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:163:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:102:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Write(std::ostream&, const T&) [with T = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 2> >, RW = double, ENABLER = void, std::ostream = std::basic_ostream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:82:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE PhysBAM::Write_Binary(PhysBAM::TYPED_OSTREAM&, const T&) [with T = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 2> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:207:98:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Write_To_File(PhysBAM::STREAM_TYPE, const string&, const T1&) [with T1 = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 2> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:145:9:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Write_Output(int) const [with TV = PhysBAM::VECTOR<float, 2>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:163:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:102:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Write(std::ostream&, const T&) [with T = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 2> >, RW = float, ENABLER = void, std::ostream = std::basic_ostream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:84:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE PhysBAM::Write_Binary(PhysBAM::TYPED_OSTREAM&, const T&) [with T = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 2> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:207:98:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Write_To_File(PhysBAM::STREAM_TYPE, const string&, const T1&) [with T1 = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 2> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:145:9:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Write_Output(int) const [with TV = PhysBAM::VECTOR<float, 2>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:163:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:102:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Write(std::ostream&, const T&) [with T = PhysBAM::ARRAY<bool, PhysBAM::FACE_INDEX<2> >, RW = double, ENABLER = void, std::ostream = std::basic_ostream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:82:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE PhysBAM::Write_Binary(PhysBAM::TYPED_OSTREAM&, const T&) [with T = PhysBAM::ARRAY<bool, PhysBAM::FACE_INDEX<2> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:207:98:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Write_To_File(PhysBAM::STREAM_TYPE, const string&, const T1&) [with T1 = PhysBAM::ARRAY<bool, PhysBAM::FACE_INDEX<2> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:146:9:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Write_Output(int) const [with TV = PhysBAM::VECTOR<float, 2>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:163:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:102:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Write(std::ostream&, const T&) [with T = PhysBAM::ARRAY<bool, PhysBAM::FACE_INDEX<2> >, RW = float, ENABLER = void, std::ostream = std::basic_ostream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:84:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE PhysBAM::Write_Binary(PhysBAM::TYPED_OSTREAM&, const T&) [with T = PhysBAM::ARRAY<bool, PhysBAM::FACE_INDEX<2> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:207:98:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Write_To_File(PhysBAM::STREAM_TYPE, const string&, const T1&) [with T1 = PhysBAM::ARRAY<bool, PhysBAM::FACE_INDEX<2> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:146:9:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Write_Output(int) const [with TV = PhysBAM::VECTOR<float, 2>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:163:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:102:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Write(std::ostream&, const T&) [with T = PhysBAM::ARRAY<bool, PhysBAM::VECTOR<int, 2> >, RW = double, ENABLER = void, std::ostream = std::basic_ostream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:82:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE PhysBAM::Write_Binary(PhysBAM::TYPED_OSTREAM&, const T&) [with T = PhysBAM::ARRAY<bool, PhysBAM::VECTOR<int, 2> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:207:98:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Write_To_File(PhysBAM::STREAM_TYPE, const string&, const T1&) [with T1 = PhysBAM::ARRAY<bool, PhysBAM::VECTOR<int, 2> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:147:9:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Write_Output(int) const [with TV = PhysBAM::VECTOR<float, 2>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:163:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:102:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Write(std::ostream&, const T&) [with T = PhysBAM::ARRAY<bool, PhysBAM::VECTOR<int, 2> >, RW = float, ENABLER = void, std::ostream = std::basic_ostream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:84:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE PhysBAM::Write_Binary(PhysBAM::TYPED_OSTREAM&, const T&) [with T = PhysBAM::ARRAY<bool, PhysBAM::VECTOR<int, 2> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:207:98:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Write_To_File(PhysBAM::STREAM_TYPE, const string&, const T1&) [with T1 = PhysBAM::ARRAY<bool, PhysBAM::VECTOR<int, 2> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:147:9:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Write_Output(int) const [with TV = PhysBAM::VECTOR<float, 2>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:163:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:102:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Read(std::istream&, T&) [with T = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<3> >, RW = double, ENABLER = void, std::istream = std::basic_istream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:50:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_READ<T>::value>::TYPE PhysBAM::Read_Binary(PhysBAM::TYPED_ISTREAM&, T&) [with T = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<3> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_READ<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:154:94:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Read_From_File(PhysBAM::STREAM_TYPE, const string&, T1&) [with T1 = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<3> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:157:105:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Read_Output_Files(int) [with TV = PhysBAM::VECTOR<float, 3>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:164:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:99:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Read(std::istream&, T&) [with T = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<3> >, RW = float, ENABLER = void, std::istream = std::basic_istream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:52:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_READ<T>::value>::TYPE PhysBAM::Read_Binary(PhysBAM::TYPED_ISTREAM&, T&) [with T = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<3> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_READ<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:154:94:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Read_From_File(PhysBAM::STREAM_TYPE, const string&, T1&) [with T1 = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<3> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:157:105:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Read_Output_Files(int) [with TV = PhysBAM::VECTOR<float, 3>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:164:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:99:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Read(std::istream&, T&) [with T = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 3> >, RW = double, ENABLER = void, std::istream = std::basic_istream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:50:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_READ<T>::value>::TYPE PhysBAM::Read_Binary(PhysBAM::TYPED_ISTREAM&, T&) [with T = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 3> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_READ<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:154:94:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Read_From_File(PhysBAM::STREAM_TYPE, const string&, T1&) [with T1 = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 3> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:159:99:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Read_Output_Files(int) [with TV = PhysBAM::VECTOR<float, 3>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:164:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:99:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Read(std::istream&, T&) [with T = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 3> >, RW = float, ENABLER = void, std::istream = std::basic_istream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:52:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_READ<T>::value>::TYPE PhysBAM::Read_Binary(PhysBAM::TYPED_ISTREAM&, T&) [with T = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 3> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_READ<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:154:94:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Read_From_File(PhysBAM::STREAM_TYPE, const string&, T1&) [with T1 = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 3> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:159:99:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Read_Output_Files(int) [with TV = PhysBAM::VECTOR<float, 3>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:164:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:99:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Write(std::ostream&, const T&) [with T = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<3> >, RW = double, ENABLER = void, std::ostream = std::basic_ostream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:82:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE PhysBAM::Write_Binary(PhysBAM::TYPED_OSTREAM&, const T&) [with T = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<3> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:207:98:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Write_To_File(PhysBAM::STREAM_TYPE, const string&, const T1&) [with T1 = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<3> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:137:5:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Write_Output(int) const [with TV = PhysBAM::VECTOR<float, 3>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:164:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:102:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Write(std::ostream&, const T&) [with T = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<3> >, RW = float, ENABLER = void, std::ostream = std::basic_ostream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:84:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE PhysBAM::Write_Binary(PhysBAM::TYPED_OSTREAM&, const T&) [with T = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<3> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:207:98:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Write_To_File(PhysBAM::STREAM_TYPE, const string&, const T1&) [with T1 = PhysBAM::ARRAY<float, PhysBAM::FACE_INDEX<3> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:137:5:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Write_Output(int) const [with TV = PhysBAM::VECTOR<float, 3>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:164:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:102:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Write(std::ostream&, const T&) [with T = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 3> >, RW = double, ENABLER = void, std::ostream = std::basic_ostream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:82:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE PhysBAM::Write_Binary(PhysBAM::TYPED_OSTREAM&, const T&) [with T = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 3> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:207:98:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Write_To_File(PhysBAM::STREAM_TYPE, const string&, const T1&) [with T1 = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 3> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:145:9:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Write_Output(int) const [with TV = PhysBAM::VECTOR<float, 3>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:164:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:102:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Write(std::ostream&, const T&) [with T = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 3> >, RW = float, ENABLER = void, std::ostream = std::basic_ostream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:84:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE PhysBAM::Write_Binary(PhysBAM::TYPED_OSTREAM&, const T&) [with T = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 3> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:207:98:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Write_To_File(PhysBAM::STREAM_TYPE, const string&, const T1&) [with T1 = PhysBAM::ARRAY<float, PhysBAM::VECTOR<int, 3> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:145:9:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Write_Output(int) const [with TV = PhysBAM::VECTOR<float, 3>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:164:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:102:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Write(std::ostream&, const T&) [with T = PhysBAM::ARRAY<bool, PhysBAM::FACE_INDEX<3> >, RW = double, ENABLER = void, std::ostream = std::basic_ostream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:82:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE PhysBAM::Write_Binary(PhysBAM::TYPED_OSTREAM&, const T&) [with T = PhysBAM::ARRAY<bool, PhysBAM::FACE_INDEX<3> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:207:98:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Write_To_File(PhysBAM::STREAM_TYPE, const string&, const T1&) [with T1 = PhysBAM::ARRAY<bool, PhysBAM::FACE_INDEX<3> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:146:9:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Write_Output(int) const [with TV = PhysBAM::VECTOR<float, 3>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:164:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:102:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Write(std::ostream&, const T&) [with T = PhysBAM::ARRAY<bool, PhysBAM::FACE_INDEX<3> >, RW = float, ENABLER = void, std::ostream = std::basic_ostream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:84:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE PhysBAM::Write_Binary(PhysBAM::TYPED_OSTREAM&, const T&) [with T = PhysBAM::ARRAY<bool, PhysBAM::FACE_INDEX<3> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:207:98:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Write_To_File(PhysBAM::STREAM_TYPE, const string&, const T1&) [with T1 = PhysBAM::ARRAY<bool, PhysBAM::FACE_INDEX<3> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:146:9:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Write_Output(int) const [with TV = PhysBAM::VECTOR<float, 3>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:164:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:102:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Write(std::ostream&, const T&) [with T = PhysBAM::ARRAY<bool, PhysBAM::VECTOR<int, 3> >, RW = double, ENABLER = void, std::ostream = std::basic_ostream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:82:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE PhysBAM::Write_Binary(PhysBAM::TYPED_OSTREAM&, const T&) [with T = PhysBAM::ARRAY<bool, PhysBAM::VECTOR<int, 3> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:207:98:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Write_To_File(PhysBAM::STREAM_TYPE, const string&, const T1&) [with T1 = PhysBAM::ARRAY<bool, PhysBAM::VECTOR<int, 3> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:147:9:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Write_Output(int) const [with TV = PhysBAM::VECTOR<float, 3>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:164:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:102:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h: In static member function ‘static void PhysBAM::Read_Write<T, RW, ENABLER>::Write(std::ostream&, const T&) [with T = PhysBAM::ARRAY<bool, PhysBAM::VECTOR<int, 3> >, RW = float, ENABLER = void, std::ostream = std::basic_ostream<char>]’:
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE_FUNCTIONS.h:84:9:   instantiated from ‘typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE PhysBAM::Write_Binary(PhysBAM::TYPED_OSTREAM&, const T&) [with T = PhysBAM::ARRAY<bool, PhysBAM::VECTOR<int, 3> >, typename PhysBAM::DISABLE_IF<PhysBAM::HAS_TYPED_WRITE<T>::value>::TYPE = void]’
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.h:207:98:   instantiated from ‘void PhysBAM::FILE_UTILITIES::Write_To_File(PhysBAM::STREAM_TYPE, const string&, const T1&) [with T1 = PhysBAM::ARRAY<bool, PhysBAM::VECTOR<int, 3> >, std::string = std::basic_string<char>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:147:9:   instantiated from ‘void PhysBAM::LAYOUT<TV>::Write_Output(int) const [with TV = PhysBAM::VECTOR<float, 3>]’
+Projects/userpgs/CS838_LavaLamp/LAYOUT.cpp:164:16:   instantiated from here
+Public_Library/PhysBAM_Tools/Read_Write/Utilities/READ_WRITE.h:102:1: error: a cast to a type other than an integral or enumeration type cannot appear in a constant-expression
+scons: *** [build/nocona/release/Projects/userpgs/CS838_LavaLamp/LAYOUT.os] Error 1
+scons: building terminated because of errors.
