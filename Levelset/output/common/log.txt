@@ -3,137 +3,45 @@ Simulation
     <scope name="Substep">
       <print>something...</print>
       <print>something...</print>
-    <time value="0.009054"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.008658"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.009008"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.008682"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.008414"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.010768"/></scope>
-  <time value="0.054815"/></scope>
+    <time value="0.010564"/></scope>
+  <time value="0.010614"/></scope>
   <scope id="FRAME" name="Frame 2">
     <scope name="Substep">
       <print>something...</print>
       <print>something...</print>
-    <time value="0.009167"/></scope>
+    <time value="0.009337"/></scope>
     <scope name="Substep">
       <print>something...</print>
       <print>something...</print>
-    <time value="0.008541"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.008469"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.009955"/></scope>
-  <time value="0.036262"/></scope>
+    <time value="0.009307"/></scope>
+  <time value="0.018728"/></scope>
   <scope id="FRAME" name="Frame 3">
     <scope name="Substep">
       <print>something...</print>
       <print>something...</print>
-    <time value="0.008829"/></scope>
+    <time value="0.008884"/></scope>
     <scope name="Substep">
       <print>something...</print>
       <print>something...</print>
-    <time value="0.008561"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.009270"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.008539"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.008455"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.009438"/></scope>
-  <time value="0.053299"/></scope>
+    <time value="0.010064"/></scope>
+  <time value="0.019013"/></scope>
   <scope id="FRAME" name="Frame 4">
     <scope name="Substep">
       <print>something...</print>
       <print>something...</print>
-    <time value="0.009265"/></scope>
+    <time value="0.009491"/></scope>
     <scope name="Substep">
       <print>something...</print>
       <print>something...</print>
-    <time value="0.008418"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.008570"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.009008"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.008890"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.008891"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.008727"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.009300"/></scope>
-  <time value="0.071335"/></scope>
+    <time value="0.009414"/></scope>
+  <time value="0.018970"/></scope>
   <scope id="FRAME" name="Frame 5">
     <scope name="Substep">
       <print>something...</print>
       <print>something...</print>
-    <time value="0.009129"/></scope>
+    <time value="0.008898"/></scope>
     <scope name="Substep">
       <print>something...</print>
       <print>something...</print>
-    <time value="0.008592"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.009586"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.008622"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.008524"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.009113"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.008812"/></scope>
-    <scope name="Substep">
-      <print>something...</print>
-      <print>something...</print>
-    <time value="0.009456"/></scope>
-  <time value="0.072122"/></scope>
+    <time value="0.009971"/></scope>
+  <time value="0.018941"/></scope>

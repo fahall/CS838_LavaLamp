@@ -69,16 +69,16 @@ public:
     {
 	for(typename GRID<TV>::FACE_ITERATOR iterator(mac_grid);iterator.Valid();iterator.Next()) 
 	{
-		face_velocities(iterator.Full_Index(1))=1;//this sets initial velocites
-		face_velocities(iterator.Full_Index(2))=0;//this sets initial velocites
+		face_velocities(iterator.Full_Index())=0;//this sets initial velocites
+//		face_velocities(iterator.Full_Index(2))=0;//this sets initial velocites
 	}
     	for(typename GRID<TV>::CELL_ITERATOR iterator(mac_grid);iterator.Valid();iterator.Next())
 	{
-		levelset.phi(iterator.Cell_Index())=iterator.Location()(1)-mac_grid.dX(2)*1;// this sets initial water location
+		levelset.phi(iterator.Cell_Index())=iterator.Location()(2)-mac_grid.dX(2)*4;// this sets initial water location
 	}
     }
     
-    void Get_Scalar_Field_Sources(const T time_velocitiesif(time>3) return;
+    void Get_Scalar_Field_Sources(const T time_velocities){ if(time_velocities>3) return;
     for(typename GRID<TV>::CELL_ITERATOR iterator(mac_grid);iterator.Valid();iterator.Next()){TV_INT index=iterator.Cell_Index();
         T distance=abs((iterator.Location()-source.min_corner).Min());
         distance=min(distance,abs((iterator.Location()-source.max_corner).Min()));
