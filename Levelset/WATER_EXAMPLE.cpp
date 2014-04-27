@@ -69,7 +69,9 @@ Set_Boundary_Conditions(const T time)
     projection.elliptic_solver->psi_D.Fill(false);
     projection.elliptic_solver->psi_N.Fill(false);
     
-    for(int axis=1;axis<=TV::dimension;axis++) for(int axis_side=1;axis_side<=2;axis_side++)
+    for(int axis=1;axis<=TV::dimension;axis++)
+    {
+    for(int axis_side=1;axis_side<=2;axis_side++)
     {
 	int side=2*(axis-1)+axis_side;//making a value for side...
 //if axis_side==1 then interior_cell_offset=TV_INT() else -TV_INT
@@ -98,8 +100,12 @@ Set_Boundary_Conditions(const T time)
                     if(face_velocities.Component(axis).Valid_Index(face))//is this a valid position for face velocities? if so
 			{
 			projection.elliptic_solver->psi_N.Component(axis)(face)=true;//pressure solver is looking for a valid normal component
-			face_velocities.Component(axis)(face)=0;//no slip velocity condition
-			}
+//std::cout<<boundary_face_offset<<std::endl;
+			face_velocities.Component(1)(face)=0;//no slip velocity condition
+			face_velocities.Component(2)(face)=0;//no slip velocity condition
+			face_velocities.Component(1)(face+boundary_face_offset)=0;//no slip velocity condition
+			face_velocities.Component(2)(face+boundary_face_offset)=0;//no slip velocity condition
+			}//wlbnd
 		}
                 else
 		{
@@ -118,6 +124,7 @@ Set_Boundary_Conditions(const T time)
 			projection.p(cell)=0;
 			}
         }	
+    }
     }
     for(typename GRID<TV>::FACE_ITERATOR iterator(mac_grid);iterator.Valid();iterator.Next())
     {

@@ -50,7 +50,7 @@ public:
     BOUNDARY_UNIFORM<GRID<TV>,T> *boundary;
     T_LEVELSET levelset;
     VECTOR<VECTOR<bool,2>,TV::dimension> domain_boundary;    
-    RANGE<TV> source;
+    //RANGE<TV> source;
     pthread_mutex_t lock;
 
     WATER_EXAMPLE(const STREAM_TYPE stream_type_input,int refine=0);
@@ -74,16 +74,30 @@ public:
 	}
     	for(typename GRID<TV>::CELL_ITERATOR iterator(mac_grid);iterator.Valid();iterator.Next())
 	{
-		levelset.phi(iterator.Cell_Index())=iterator.Location()(2)-mac_grid.dX(2)*height;// this sets initial water location
+		if(iterator.Location()(2)>=.8)
+		{
+levelset.phi(iterator.Cell_Index())=1;
+		}
+		else
+		{
+levelset.phi(iterator.Cell_Index())=-(iterator.Location()(2)-mac_grid.dX(2)*height);// this sets initial water location
+		}
+//levelset.phi(iterator.Cell_Index())=.1-(iterator.Location()(2)-mac_grid.dX(2)*height);// this sets initial water location
+
 	}
     }
     
-    void Get_Scalar_Field_Sources(const T time_velocities){ if(time_velocities>3) return;
+    void Get_Scalar_Field_Sources(const T time_velocities)
+    { if(time_velocities>3) return;
     for(typename GRID<TV>::CELL_ITERATOR iterator(mac_grid);iterator.Valid();iterator.Next()){TV_INT index=iterator.Cell_Index();
-        T distance=abs((iterator.Location()-source.min_corner).Min());
-        distance=min(distance,abs((iterator.Location()-source.max_corner).Min()));
-        T phi=0;if(source.Lazy_Inside(iterator.Location())) phi=-1*distance; else phi=distance;
-        levelset.phi(index)=min(levelset.phi(index),phi);}}
+        //T distance=abs((iterator.Location()-source.min_corner).Min());
+        //distance=min(distance,abs((iterator.Location()-source.max_corner).Min()));
+        //T phi=0;
+	//	if(source.Lazy_Inside(iterator.Location())) phi=-1*distance; else phi=distance;
+	
+        ////levelset.phi(index)=min(levelset.phi(index),phi);
+	}
+    }
 
     virtual void Write_Output_Files(const int frame);
     virtual void Read_Output_Files(const int frame);
