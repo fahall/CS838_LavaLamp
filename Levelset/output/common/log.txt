@@ -1,47 +1,878 @@
 Simulation                                        
+  <print>Creating directory using system("mkdir -p output/0")...Successful!</print>
   <scope id="FRAME" name="Frame 1">
     <scope name="Substep">
       <print>something...</print>
       <print>something...</print>
-    <time value="0.010564"/></scope>
-  <time value="0.010614"/></scope>
+      <print>Creating directory using system("mkdir -p output/1")...Successful!</print>
+    <time value="0.010247"/></scope>
+  <time value="0.010304"/></scope>
   <scope id="FRAME" name="Frame 2">
     <scope name="Substep">
       <print>something...</print>
       <print>something...</print>
-    <time value="0.009337"/></scope>
+    <time value="0.009162"/></scope>
     <scope name="Substep">
       <print>something...</print>
       <print>something...</print>
-    <time value="0.009307"/></scope>
-  <time value="0.018728"/></scope>
+    <time value="0.010019"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/2")...Successful!</print>
+    <time value="0.008425"/></scope>
+  <time value="0.027722"/></scope>
   <scope id="FRAME" name="Frame 3">
     <scope name="Substep">
       <print>something...</print>
       <print>something...</print>
-    <time value="0.008884"/></scope>
+    <time value="0.005800"/></scope>
     <scope name="Substep">
       <print>something...</print>
       <print>something...</print>
-    <time value="0.010064"/></scope>
-  <time value="0.019013"/></scope>
+    <time value="0.005270"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005806"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005375"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/3")...Successful!</print>
+    <time value="0.008745"/></scope>
+  <time value="0.031160"/></scope>
   <scope id="FRAME" name="Frame 4">
     <scope name="Substep">
       <print>something...</print>
       <print>something...</print>
-    <time value="0.009491"/></scope>
+    <time value="0.005307"/></scope>
     <scope name="Substep">
       <print>something...</print>
       <print>something...</print>
-    <time value="0.009414"/></scope>
-  <time value="0.018970"/></scope>
+    <time value="0.005513"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005823"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005434"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005379"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005409"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/4")...Successful!</print>
+    <time value="0.008595"/></scope>
+  <time value="0.041695"/></scope>
   <scope id="FRAME" name="Frame 5">
     <scope name="Substep">
       <print>something...</print>
       <print>something...</print>
-    <time value="0.008898"/></scope>
+    <time value="0.005868"/></scope>
     <scope name="Substep">
       <print>something...</print>
       <print>something...</print>
-    <time value="0.009971"/></scope>
-  <time value="0.018941"/></scope>
+    <time value="0.005411"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005387"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005350"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005297"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005616"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005785"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005221"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/5")...Successful!</print>
+    <time value="0.008539"/></scope>
+  <time value="0.052773"/></scope>
+  <scope id="FRAME" name="Frame 6">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005535"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005533"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005817"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005428"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005364"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005605"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005238"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.006006"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005487"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005265"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/6")...Successful!</print>
+    <time value="0.008503"/></scope>
+  <time value="0.064159"/></scope>
+  <scope id="FRAME" name="Frame 7">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005514"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005820"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005438"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005481"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005430"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005571"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005398"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005615"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005439"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005442"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005325"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005489"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/7")...Successful!</print>
+    <time value="0.009776"/></scope>
+  <time value="0.076158"/></scope>
+  <scope id="FRAME" name="Frame 8">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.005576"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+    <time value="0.008111"/></scope>
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/8")...Successful!</print>
+    <time value="0.011061"/></scope>
+  <time value="0.024866"/></scope>
+  <scope id="FRAME" name="Frame 9">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/9")...Successful!</print>
+    <time value="0.011592"/></scope>
+  <time value="0.011643"/></scope>
+  <scope id="FRAME" name="Frame 10">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/10")...Successful!</print>
+    <time value="0.011154"/></scope>
+  <time value="0.011196"/></scope>
+  <scope id="FRAME" name="Frame 11">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/11")...Successful!</print>
+    <time value="0.012534"/></scope>
+  <time value="0.012568"/></scope>
+  <scope id="FRAME" name="Frame 12">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/12")...Successful!</print>
+    <time value="0.011106"/></scope>
+  <time value="0.011137"/></scope>
+  <scope id="FRAME" name="Frame 13">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/13")...Successful!</print>
+    <time value="0.011362"/></scope>
+  <time value="0.011397"/></scope>
+  <scope id="FRAME" name="Frame 14">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/14")...Successful!</print>
+    <time value="0.011867"/></scope>
+  <time value="0.011904"/></scope>
+  <scope id="FRAME" name="Frame 15">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/15")...Successful!</print>
+    <time value="0.011159"/></scope>
+  <time value="0.011202"/></scope>
+  <scope id="FRAME" name="Frame 16">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/16")...Successful!</print>
+    <time value="0.012149"/></scope>
+  <time value="0.012187"/></scope>
+  <scope id="FRAME" name="Frame 17">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/17")...Successful!</print>
+    <time value="0.011385"/></scope>
+  <time value="0.011420"/></scope>
+  <scope id="FRAME" name="Frame 18">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/18")...Successful!</print>
+    <time value="0.011952"/></scope>
+  <time value="0.011994"/></scope>
+  <scope id="FRAME" name="Frame 19">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/19")...Successful!</print>
+    <time value="0.011869"/></scope>
+  <time value="0.011905"/></scope>
+  <scope id="FRAME" name="Frame 20">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/20")...Successful!</print>
+    <time value="0.011293"/></scope>
+  <time value="0.011347"/></scope>
+  <scope id="FRAME" name="Frame 21">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/21")...Successful!</print>
+    <time value="0.012286"/></scope>
+  <time value="0.012320"/></scope>
+  <scope id="FRAME" name="Frame 22">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/22")...Successful!</print>
+    <time value="0.011534"/></scope>
+  <time value="0.011584"/></scope>
+  <scope id="FRAME" name="Frame 23">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/23")...Successful!</print>
+    <time value="0.012068"/></scope>
+  <time value="0.012109"/></scope>
+  <scope id="FRAME" name="Frame 24">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/24")...Successful!</print>
+    <time value="0.011943"/></scope>
+  <time value="0.011983"/></scope>
+  <scope id="FRAME" name="Frame 25">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/25")...Successful!</print>
+    <time value="0.011113"/></scope>
+  <time value="0.011158"/></scope>
+  <scope id="FRAME" name="Frame 26">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/26")...Successful!</print>
+    <time value="0.011886"/></scope>
+  <time value="0.011929"/></scope>
+  <scope id="FRAME" name="Frame 27">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/27")...Successful!</print>
+    <time value="0.011939"/></scope>
+  <time value="0.011972"/></scope>
+  <scope id="FRAME" name="Frame 28">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/28")...Successful!</print>
+    <time value="0.011364"/></scope>
+  <time value="0.011405"/></scope>
+  <scope id="FRAME" name="Frame 29">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/29")...Successful!</print>
+    <time value="0.011558"/></scope>
+  <time value="0.011602"/></scope>
+  <scope id="FRAME" name="Frame 30">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/30")...Successful!</print>
+    <time value="0.011345"/></scope>
+  <time value="0.011394"/></scope>
+  <scope id="FRAME" name="Frame 31">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/31")...Successful!</print>
+    <time value="0.012055"/></scope>
+  <time value="0.012089"/></scope>
+  <scope id="FRAME" name="Frame 32">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/32")...Successful!</print>
+    <time value="0.011921"/></scope>
+  <time value="0.011958"/></scope>
+  <scope id="FRAME" name="Frame 33">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/33")...Successful!</print>
+    <time value="0.011067"/></scope>
+  <time value="0.011102"/></scope>
+  <scope id="FRAME" name="Frame 34">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/34")...Successful!</print>
+    <time value="0.011616"/></scope>
+  <time value="0.011650"/></scope>
+  <scope id="FRAME" name="Frame 35">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/35")...Successful!</print>
+    <time value="0.011571"/></scope>
+  <time value="0.011623"/></scope>
+  <scope id="FRAME" name="Frame 36">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/36")...Successful!</print>
+    <time value="0.011180"/></scope>
+  <time value="0.011239"/></scope>
+  <scope id="FRAME" name="Frame 37">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/37")...Successful!</print>
+    <time value="0.011809"/></scope>
+  <time value="0.011850"/></scope>
+  <scope id="FRAME" name="Frame 38">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/38")...Successful!</print>
+    <time value="0.010912"/></scope>
+  <time value="0.010951"/></scope>
+  <scope id="FRAME" name="Frame 39">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/39")...Successful!</print>
+    <time value="0.010962"/></scope>
+  <time value="0.010994"/></scope>
+  <scope id="FRAME" name="Frame 40">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/40")...Successful!</print>
+    <time value="0.011952"/></scope>
+  <time value="0.011992"/></scope>
+  <scope id="FRAME" name="Frame 41">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/41")...Successful!</print>
+    <time value="0.011043"/></scope>
+  <time value="0.011074"/></scope>
+  <scope id="FRAME" name="Frame 42">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/42")...Successful!</print>
+    <time value="0.011209"/></scope>
+  <time value="0.011259"/></scope>
+  <scope id="FRAME" name="Frame 43">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/43")...Successful!</print>
+    <time value="0.011773"/></scope>
+  <time value="0.011818"/></scope>
+  <scope id="FRAME" name="Frame 44">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/44")...Successful!</print>
+    <time value="0.011141"/></scope>
+  <time value="0.011199"/></scope>
+  <scope id="FRAME" name="Frame 45">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/45")...Successful!</print>
+    <time value="0.012510"/></scope>
+  <time value="0.012552"/></scope>
+  <scope id="FRAME" name="Frame 46">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/46")...Successful!</print>
+    <time value="0.011096"/></scope>
+  <time value="0.011143"/></scope>
+  <scope id="FRAME" name="Frame 47">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/47")...Successful!</print>
+    <time value="0.011228"/></scope>
+  <time value="0.011278"/></scope>
+  <scope id="FRAME" name="Frame 48">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/48")...Successful!</print>
+    <time value="0.012023"/></scope>
+  <time value="0.012067"/></scope>
+  <scope id="FRAME" name="Frame 49">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/49")...Successful!</print>
+    <time value="0.011094"/></scope>
+  <time value="0.011128"/></scope>
+  <scope id="FRAME" name="Frame 50">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/50")...Successful!</print>
+    <time value="0.011458"/></scope>
+  <time value="0.011509"/></scope>
+  <scope id="FRAME" name="Frame 51">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/51")...Successful!</print>
+    <time value="0.011426"/></scope>
+  <time value="0.011478"/></scope>
+  <scope id="FRAME" name="Frame 52">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/52")...Successful!</print>
+    <time value="0.011051"/></scope>
+  <time value="0.011083"/></scope>
+  <scope id="FRAME" name="Frame 53">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/53")...Successful!</print>
+    <time value="0.011838"/></scope>
+  <time value="0.011875"/></scope>
+  <scope id="FRAME" name="Frame 54">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/54")...Successful!</print>
+    <time value="0.011484"/></scope>
+  <time value="0.011525"/></scope>
+  <scope id="FRAME" name="Frame 55">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/55")...Successful!</print>
+    <time value="0.011335"/></scope>
+  <time value="0.011376"/></scope>
+  <scope id="FRAME" name="Frame 56">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/56")...Successful!</print>
+    <time value="0.012534"/></scope>
+  <time value="0.012570"/></scope>
+  <scope id="FRAME" name="Frame 57">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/57")...Successful!</print>
+    <time value="0.011387"/></scope>
+  <time value="0.011424"/></scope>
+  <scope id="FRAME" name="Frame 58">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/58")...Successful!</print>
+    <time value="0.012260"/></scope>
+  <time value="0.012302"/></scope>
+  <scope id="FRAME" name="Frame 59">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/59")...Successful!</print>
+    <time value="0.011110"/></scope>
+  <time value="0.011152"/></scope>
+  <scope id="FRAME" name="Frame 60">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/60")...Successful!</print>
+    <time value="0.011450"/></scope>
+  <time value="0.011481"/></scope>
+  <scope id="FRAME" name="Frame 61">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/61")...Successful!</print>
+    <time value="0.011615"/></scope>
+  <time value="0.011647"/></scope>
+  <scope id="FRAME" name="Frame 62">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/62")...Successful!</print>
+    <time value="0.010968"/></scope>
+  <time value="0.011000"/></scope>
+  <scope id="FRAME" name="Frame 63">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/63")...Successful!</print>
+    <time value="0.017424"/></scope>
+  <time value="0.017483"/></scope>
+  <scope id="FRAME" name="Frame 64">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/64")...Successful!</print>
+    <time value="0.021247"/></scope>
+  <time value="0.021283"/></scope>
+  <scope id="FRAME" name="Frame 65">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/65")...Successful!</print>
+    <time value="0.012732"/></scope>
+  <time value="0.012765"/></scope>
+  <scope id="FRAME" name="Frame 66">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/66")...Successful!</print>
+    <time value="0.011895"/></scope>
+  <time value="0.011926"/></scope>
+  <scope id="FRAME" name="Frame 67">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/67")...Successful!</print>
+    <time value="0.012977"/></scope>
+  <time value="0.013013"/></scope>
+  <scope id="FRAME" name="Frame 68">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/68")...Successful!</print>
+    <time value="0.013472"/></scope>
+  <time value="0.013509"/></scope>
+  <scope id="FRAME" name="Frame 69">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/69")...Successful!</print>
+    <time value="0.013648"/></scope>
+  <time value="0.013725"/></scope>
+  <scope id="FRAME" name="Frame 70">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/70")...Successful!</print>
+    <time value="0.019637"/></scope>
+  <time value="0.019691"/></scope>
+  <scope id="FRAME" name="Frame 71">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/71")...Successful!</print>
+    <time value="0.011995"/></scope>
+  <time value="0.012034"/></scope>
+  <scope id="FRAME" name="Frame 72">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/72")...Successful!</print>
+    <time value="0.012382"/></scope>
+  <time value="0.012417"/></scope>
+  <scope id="FRAME" name="Frame 73">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/73")...Successful!</print>
+    <time value="0.012249"/></scope>
+  <time value="0.012280"/></scope>
+  <scope id="FRAME" name="Frame 74">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/74")...Successful!</print>
+    <time value="0.012682"/></scope>
+  <time value="0.012726"/></scope>
+  <scope id="FRAME" name="Frame 75">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/75")...Successful!</print>
+    <time value="0.011772"/></scope>
+  <time value="0.011808"/></scope>
+  <scope id="FRAME" name="Frame 76">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/76")...Successful!</print>
+    <time value="0.012016"/></scope>
+  <time value="0.012063"/></scope>
+  <scope id="FRAME" name="Frame 77">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/77")...Successful!</print>
+    <time value="0.012721"/></scope>
+  <time value="0.012795"/></scope>
+  <scope id="FRAME" name="Frame 78">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/78")...Successful!</print>
+    <time value="0.012213"/></scope>
+  <time value="0.012258"/></scope>
+  <scope id="FRAME" name="Frame 79">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/79")...Successful!</print>
+    <time value="0.012708"/></scope>
+  <time value="0.012764"/></scope>
+  <scope id="FRAME" name="Frame 80">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/80")...Successful!</print>
+    <time value="0.012017"/></scope>
+  <time value="0.012066"/></scope>
+  <scope id="FRAME" name="Frame 81">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/81")...Successful!</print>
+    <time value="0.012186"/></scope>
+  <time value="0.012232"/></scope>
+  <scope id="FRAME" name="Frame 82">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/82")...Successful!</print>
+    <time value="0.012527"/></scope>
+  <time value="0.012566"/></scope>
+  <scope id="FRAME" name="Frame 83">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/83")...Successful!</print>
+    <time value="0.012060"/></scope>
+  <time value="0.012103"/></scope>
+  <scope id="FRAME" name="Frame 84">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/84")...Successful!</print>
+    <time value="0.014730"/></scope>
+  <time value="0.014779"/></scope>
+  <scope id="FRAME" name="Frame 85">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/85")...Successful!</print>
+    <time value="0.022416"/></scope>
+  <time value="0.022468"/></scope>
+  <scope id="FRAME" name="Frame 86">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/86")...Successful!</print>
+    <time value="0.012156"/></scope>
+  <time value="0.012192"/></scope>
+  <scope id="FRAME" name="Frame 87">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/87")...Successful!</print>
+    <time value="0.012122"/></scope>
+  <time value="0.012153"/></scope>
+  <scope id="FRAME" name="Frame 88">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/88")...Successful!</print>
+    <time value="0.012742"/></scope>
+  <time value="0.012784"/></scope>
+  <scope id="FRAME" name="Frame 89">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/89")...Successful!</print>
+    <time value="0.012057"/></scope>
+  <time value="0.012094"/></scope>
+  <scope id="FRAME" name="Frame 90">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/90")...Successful!</print>
+    <time value="0.010801"/></scope>
+  <time value="0.010840"/></scope>
+  <scope id="FRAME" name="Frame 91">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/91")...Successful!</print>
+    <time value="0.018032"/></scope>
+  <time value="0.018061"/></scope>
+  <scope id="FRAME" name="Frame 92">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/92")...Successful!</print>
+    <time value="0.012331"/></scope>
+  <time value="0.012385"/></scope>
+  <scope id="FRAME" name="Frame 93">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/93")...Successful!</print>
+    <time value="0.012391"/></scope>
+  <time value="0.012439"/></scope>
+  <scope id="FRAME" name="Frame 94">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/94")...Successful!</print>
+    <time value="0.011802"/></scope>
+  <time value="0.011849"/></scope>
+  <scope id="FRAME" name="Frame 95">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/95")...Successful!</print>
+    <time value="0.012445"/></scope>
+  <time value="0.012496"/></scope>
+  <scope id="FRAME" name="Frame 96">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/96")...Successful!</print>
+    <time value="0.011902"/></scope>
+  <time value="0.011949"/></scope>
+  <scope id="FRAME" name="Frame 97">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/97")...Successful!</print>
+    <time value="0.012272"/></scope>
+  <time value="0.012320"/></scope>
+  <scope id="FRAME" name="Frame 98">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/98")...Successful!</print>
+    <time value="0.012347"/></scope>
+  <time value="0.012397"/></scope>
+  <scope id="FRAME" name="Frame 99">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/99")...Successful!</print>
+    <time value="0.011990"/></scope>
+  <time value="0.012037"/></scope>
+  <scope id="FRAME" name="Frame 100">
+    <scope name="Substep">
+      <print>something...</print>
+      <print>something...</print>
+      <print>Creating directory using system("mkdir -p output/100")...Successful!</print>
+    <time value="0.013197"/></scope>
+  <time value="0.013252"/></scope>

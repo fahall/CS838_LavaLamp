@@ -37,7 +37,7 @@ public:
     int write_substeps_level;
     bool write_debug_data;
     std::string output_directory;
-
+    int height;
     T cfl;
 
     GRID<TV> mac_grid;
@@ -74,7 +74,7 @@ public:
 	}
     	for(typename GRID<TV>::CELL_ITERATOR iterator(mac_grid);iterator.Valid();iterator.Next())
 	{
-		levelset.phi(iterator.Cell_Index())=iterator.Location()(2)-mac_grid.dX(2)*4;// this sets initial water location
+		levelset.phi(iterator.Cell_Index())=iterator.Location()(2)-mac_grid.dX(2)*height;// this sets initial water location
 	}
     }
     

@@ -20,12 +20,12 @@ template<class TV> void Execute_Main_Program(STREAM_TYPE& stream_type,PARSE_ARGS
     example->last_frame=parse_args.Get_Integer_Value("-e");
     example->write_substeps_level=parse_args.Get_Integer_Value("-substep");
     example->write_debug_data=true;
-    
+    example->height=0;//0.25*scale;//represents height of water relative to container size 
     TV point1=TV::All_Ones_Vector()*(TV::dimension==2?.65:.45),point2=TV::All_Ones_Vector()*.75;
 point1(1)=0;
-point2(1)=.05;
+point2(1)=0;
 point1(2)=0;
-point2(2)=0.05;
+point2(2)=0;
     example->source.min_corner=point1;example->source.max_corner=point2;
 
     if(mpi_world.initialized){
@@ -51,7 +51,7 @@ int main(int argc,char *argv[])
     parse_args.Add_Integer_Argument("-restart",0,"restart frame");
     parse_args.Add_Integer_Argument("-scale",100,"fine scale grid resolution");//this number changes resolution of grid
     parse_args.Add_Integer_Argument("-substep",-1,"output-substep level");
-    parse_args.Add_Integer_Argument("-e",5,"last frame");
+    parse_args.Add_Integer_Argument("-e",100,"last frame");
     parse_args.Add_Integer_Argument("-threads",1,"number of threads");
     parse_args.Add_Option_Argument("-3d","run in 3 dimensions");
 
