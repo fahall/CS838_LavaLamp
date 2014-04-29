@@ -1,0 +1,6 @@
+We have inserted gravity inside WATER_DRIVER.cpp, noted in the file with 'gravity'
+we have placed the water in the center of the grid, this is inside WATER_EXAMPLE.h, noted by wlbnd
+we have implemented a no slip boundary along the walls, inside WATER_EXAMPLE.CPP.
+we have observed significant errors associated with mass due to level sets.
+we have edited the main.cpp file, adding a shorcut for resolution and frames run.
+we have heavily modified the original source code for our purposes.

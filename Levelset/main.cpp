@@ -5,8 +5,8 @@
 #include "WATER_DRIVER.h"
 #include "WATER_EXAMPLE.h"
 
-int numframe   = 100;
-int resolution = 100;
+int numframe   = 500;//number of frames to run for
+int resolution = 50;//grid resolution x by x
 using namespace PhysBAM;
 
 template<class TV> void Execute_Main_Program(STREAM_TYPE& stream_type,PARSE_ARGS& parse_args,MPI_WORLD& mpi_world)

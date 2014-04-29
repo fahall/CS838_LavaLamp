@@ -74,7 +74,9 @@ public:
 	}
     	for(typename GRID<TV>::CELL_ITERATOR iterator(mac_grid);iterator.Valid();iterator.Next())
 	{
-		if(iterator.Location()(2)>=.8)
+	    if(iterator.Location()(1)>=.2 && iterator.Location()(1)<=.8)//This is the x location of the initial water
+	    {
+		if(iterator.Location()(2)>=.8)//this affects the y location of the initial water
 		{
 levelset.phi(iterator.Cell_Index())=1;
 		}
@@ -83,7 +85,11 @@ levelset.phi(iterator.Cell_Index())=1;
 levelset.phi(iterator.Cell_Index())=-(iterator.Location()(2)-mac_grid.dX(2)*height);// this sets initial water location
 		}
 //levelset.phi(iterator.Cell_Index())=.1-(iterator.Location()(2)-mac_grid.dX(2)*height);// this sets initial water location
-
+	    }
+	    else
+	    {
+	        levelset.phi(iterator.Cell_Index())=1;// air is set as 1 and water is -1
+	    }
 	}
     }
     

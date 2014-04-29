@@ -155,7 +155,7 @@ Advance_To_Target_Time(const T target_time)
         Scalar_Advance(dt,time);
         Convect(dt,time);
         for(typename GRID<TV>::FACE_ITERATOR iterator(example.mac_grid);iterator.Valid();iterator.Next()){int axis=iterator.Axis();if(axis!=2) continue;
-            example.face_velocities.Component(axis)(iterator.Face_Index())-=dt*9.8;}
+            example.face_velocities.Component(axis)(iterator.Face_Index())-=-dt*9.81;}//sneaky gravity was 9.8 put to zero for test
         Project(dt,time);
         time+=dt;}
 }
