@@ -17,14 +17,62 @@ using namespace PhysBAM;
 // WATER_EXAMPLE
 //#####################################################################
 template<class TV> WATER_EXAMPLE<TV>::
-WATER_EXAMPLE(const STREAM_TYPE stream_type_input,int number_of_threads)
-    :stream_type(stream_type_input),initial_time(0),first_frame(0),last_frame(100),frame_rate(24),
-    restart(0),write_debug_data(false),output_directory("output"),cfl(.9),mac_grid(TV_INT(),RANGE<TV>::Unit_Box(),true),mpi_grid(0),
-    thread_queue(number_of_threads>1?new THREAD_QUEUE(number_of_threads):0),projection(mac_grid,false,false,thread_queue),advection_scalar(thread_queue),
-    boundary(0),levelset(mac_grid,*new ARRAY<T,TV_INT>())
+WATER_EXAMPLE(const STREAM_TYPE stream_type_input, int number_of_threads)
+    :stream_type(stream_type_input),
+	initial_time(0),
+	first_frame(0),
+	last_frame(100),
+	frame_rate(24),
+    restart(0),
+	write_debug_data(false),
+	output_directory("output"),
+	cfl(.9),
+	mac_grid(TV_INT(), RANGE<TV>::Unit_Box(), true),
+	mpi_grid(0),
+    thread_queue(number_of_threads>1?new THREAD_QUEUE(number_of_threads):0),
+	projection(mac_grid, false, false, thread_queue),
+	advection_scalar(thread_queue),
+    boundary(0),
+	levelset(mac_grid, *new ARRAY<T,TV_INT>())
 {
-    for(int i=1;i<=TV::dimension;i++){domain_boundary(i)(1)=true;domain_boundary(i)(2)=true;}
+    for(int i=1; i<=TV::dimension; i++)
+	{
+		domain_boundary(i)(1) = true;
+		domain_boundary(i)(2) = true;
+	}
     pthread_mutex_init(&lock,0);    
+}
+//#####################################################################
+// Initialize_Fields -- initializes level set phi and face velocities
+//#####################################################################
+template<class TV> void WATER_EXAMPLE<TV>::
+Initialize_Fields()
+{
+	for (typename GRID<TV>::FACE_ITERATOR iterator(mac_grid); iterator.Valid(); iterator.Next()) 
+	{
+		face_velocities(iterator.Full_Index())=0;//this sets initial velocites
+		// face_velocities(iterator.Full_Index(2))=0;//this sets initial velocites
+	}
+    
+	for (typename GRID<TV>::CELL_ITERATOR iterator(mac_grid); iterator.Valid(); iterator.Next())
+	{
+	    if (iterator.Location()(1) >= 0.2 && iterator.Location()(1) <= 0.8) //This is the x location of the initial water
+	    {
+			if(iterator.Location()(2) >= 0.8)//this affects the y location of the initial water
+			{
+				levelset.phi(iterator.Cell_Index()) = 1;
+			}		
+			else
+			{
+				levelset.phi(iterator.Cell_Index())= -1.0; //-(iterator.Location()(2)-mac_grid.dX(2)*height); // this sets initial water location
+			}
+			//levelset.phi(iterator.Cell_Index())=.1-(iterator.Location()(2)-mac_grid.dX(2)*height); // this sets initial water location
+	    }
+	    else
+	    {
+	        levelset.phi(iterator.Cell_Index())=1;// air is set as 1 and water is -1
+	    }
+	}
 }
 //#####################################################################
 // ~WATER_EXAMPLE
@@ -33,6 +81,33 @@ template<class TV> WATER_EXAMPLE<TV>::
 ~WATER_EXAMPLE()
 {
     if(mpi_grid) delete boundary;
+}
+//#####################################################################
+// Get_Scalar_Field_Sources
+//#####################################################################
+template<class TV> void WATER_EXAMPLE<TV>::
+Get_Scalar_Field_Sources(const T time_velocities)
+{ 
+	if (time_velocities > 3) 
+	{
+		return;
+	}
+    for (typename GRID<TV>::CELL_ITERATOR iterator(mac_grid); iterator.Valid(); iterator.Next())
+	{
+		TV_INT index=iterator.Cell_Index();
+		// T distance = abs((iterator.Location()-source.min_corner).Min());
+		// distance = min(distance, abs((iterator.Location()-source.max_corner).Min()));
+		// T phi=0;
+		// if (source.Lazy_Inside(iterator.Location())) 
+		// {
+			// phi=-1*distance; 
+		// }
+		// else 
+		// {
+			// phi=distance;
+		// }
+	    // levelset.phi(index)=min(levelset.phi(index), phi);
+	}
 }
 //#####################################################################
 // CFL 
@@ -73,8 +148,8 @@ Set_Boundary_Conditions(const T time)
     {
     for(int axis_side=1;axis_side<=2;axis_side++)
     {
-	int side=2*(axis-1)+axis_side;//making a value for side...
-//if axis_side==1 then interior_cell_offset=TV_INT() else -TV_INT
+	int side=2*(axis-1)+axis_side; //making a value for side...
+	//if axis_side==1 then interior_cell_offset=TV_INT() else -TV_INT
 	TV_INT interior_cell_offset, exterior_cell_offset, boundary_face_offset;
 	if(axis_side==1)
 	{
@@ -148,7 +223,7 @@ Set_Boundary_Conditions(const T time)
         projection.elliptic_solver->mpi_grid->Exchange_Boundary_Cell_Data(projection.p,1,false);}
 }
 //#####################################################################
-// 
+// Write_Output_Files
 //#####################################################################
 template<class TV> void WATER_EXAMPLE<TV>::
 Write_Output_Files(const int frame)
@@ -164,6 +239,9 @@ Write_Output_Files(const int frame)
         FILE_UTILITIES::Write_To_File(stream_type,output_directory+"/"+f+"/psi_N",projection.elliptic_solver->psi_N);
         FILE_UTILITIES::Write_To_File(stream_type,output_directory+"/"+f+"/psi_D",projection.elliptic_solver->psi_D);}
 }
+//#####################################################################
+// Read_Output_Files
+//#####################################################################
 template<class TV> void WATER_EXAMPLE<TV>::
 Read_Output_Files(const int frame)
 {

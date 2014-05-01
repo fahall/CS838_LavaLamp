@@ -11,22 +11,22 @@
 
 using namespace PhysBAM;
 namespace{
-template<class TV> void Write_Substep_Helper(void* writer,const std::string& title,int substep,int level)
+template<class TV> void Write_Substep_Helper(void* writer, const std::string& title, int substep, int level)
 {
-    ((WATER_DRIVER<TV>*)writer)->Write_Substep(title,substep,level);
+    ((WATER_DRIVER<TV>*)writer)->Write_Substep(title, substep, level);
 }
 };
 //#####################################################################
-// Initialize
+// Constructor
 //#####################################################################
 template<class TV> WATER_DRIVER<TV>::
 WATER_DRIVER(WATER_EXAMPLE<TV>& example)
     :example(example)
 {
-    DEBUG_SUBSTEPS::Set_Substep_Writer((void*)this,&Write_Substep_Helper<TV>);
+    DEBUG_SUBSTEPS::Set_Substep_Writer((void*)this, &Write_Substep_Helper<TV>);
 }
 //#####################################################################
-// Initialize
+// Destructor
 //#####################################################################
 template<class TV> WATER_DRIVER<TV>::
 ~WATER_DRIVER()
@@ -34,7 +34,7 @@ template<class TV> WATER_DRIVER<TV>::
     DEBUG_SUBSTEPS::Clear_Substep_Writer((void*)this);
 }
 //#####################################################################
-// Initialize
+// Execute_Main_Program
 //#####################################################################
 template<class TV> void WATER_DRIVER<TV>::
 Execute_Main_Program()
@@ -51,15 +51,19 @@ Initialize()
     DEBUG_SUBSTEPS::Set_Write_Substeps_Level(example.write_substeps_level);
 
     // setup time
-    if(example.restart) current_frame=example.restart;else current_frame=example.first_frame;    
+    if (example.restart) {current_frame=example.restart;}else {current_frame=example.first_frame;}    
     time=example.Time_At_Frame(current_frame);
 
     // mpi
-    if(example.mpi_grid) example.mpi_grid->Initialize(example.domain_boundary);
-    example.projection.elliptic_solver->mpi_grid=example.mpi_grid;
-    if(example.mpi_grid) example.boundary=new BOUNDARY_MPI<GRID<TV> >(example.mpi_grid,example.boundary_scalar);
-    else if(example.thread_queue) example.boundary=new BOUNDARY_THREADED<GRID<TV> >(*example.thread_queue,example.boundary_scalar);    
-    else example.boundary=&example.boundary_scalar;
+    if (example.mpi_grid) 
+		{example.mpi_grid->Initialize(example.domain_boundary);}
+    example.projection.elliptic_solver->mpi_grid = example.mpi_grid;
+    if(example.mpi_grid) 
+		{example.boundary=new BOUNDARY_MPI<GRID<TV> >(example.mpi_grid,example.boundary_scalar);}
+    else if (example.thread_queue) 
+		{example.boundary=new BOUNDARY_THREADED<GRID<TV> >(*example.thread_queue,example.boundary_scalar);}    
+    else 
+		{example.boundary=&example.boundary_scalar;}
 
     //threading
     example.projection.elliptic_solver->thread_queue=example.thread_queue;
@@ -80,11 +84,13 @@ Initialize()
     if(example.restart) example.Read_Output_Files(example.restart);
     
     // setup domain boundaries
-    VECTOR<VECTOR<bool,2>,TV::dimension> constant_extrapolation;constant_extrapolation.Fill(VECTOR<bool,2>::Constant_Vector(true));
+    VECTOR<VECTOR<bool,2>,TV::dimension> constant_extrapolation;
+    constant_extrapolation.Fill(VECTOR<bool,2>::Constant_Vector(true));
     example.boundary->Set_Constant_Extrapolation(constant_extrapolation);
     example.Set_Boundary_Conditions(time); // get so CFL is correct
 
-    if(!example.restart) Write_Output_Files(example.first_frame);
+    if(!example.restart) 
+		{Write_Output_Files(example.first_frame);}
     output_number=example.first_frame;
 }
 //#####################################################################
@@ -145,19 +151,31 @@ Project(const T dt,const T time)
 template<class TV> void WATER_DRIVER<TV>::
 Advance_To_Target_Time(const T target_time)
 {
-    bool done=false;for(int substep=1;!done;substep++){
+    bool done=false;
+	for (int substep=1; !done; substep++) {
         // choose time step
         LOG::Time("Substep");
-        T dt=example.cfl*example.CFL(example.face_velocities);        
-        if(example.mpi_grid) example.mpi_grid->Synchronize_Dt(dt);
-        if(time+dt>=target_time){dt=target_time-time;done=true;}
-        else if(time+2*dt>=target_time){dt=.5*(target_time-time);}
+        T dt = example.cfl*example.CFL(example.face_velocities);        
+        if (example.mpi_grid) 
+			{example.mpi_grid->Synchronize_Dt(dt);}
+        if (time+dt >= target_time) 
+			{dt = target_time-time; done=true;}
+        else if (time+2*dt >= target_time)
+			{dt = .5*(target_time-time);}
+
+		// advance the simulation
         Scalar_Advance(dt,time);
         Convect(dt,time);
-        for(typename GRID<TV>::FACE_ITERATOR iterator(example.mac_grid);iterator.Valid();iterator.Next()){int axis=iterator.Axis();if(axis!=2) continue;
-            example.face_velocities.Component(axis)(iterator.Face_Index())-=-dt*9.81;}//sneaky gravity was 9.8 put to zero for test
-        Project(dt,time);
-        time+=dt;}
+        for (typename GRID<TV>::FACE_ITERATOR iterator(example.mac_grid); iterator.Valid(); iterator.Next())
+		{
+			int axis=iterator.Axis();
+			if (axis != 2) 
+				{continue;}
+            example.face_velocities.Component(axis)(iterator.Face_Index()) -= -dt*9.81; //sneaky gravity was 9.8 put to zero for test
+		}
+        Project(dt, time);
+        time += dt;
+	}
 }
 //#####################################################################
 // Simulate_To_Frame
@@ -192,7 +210,7 @@ Write_Output_Files(const int frame)
     FILE_UTILITIES::Create_Directory(example.output_directory+STRING_UTILITIES::string_sprintf("/%d",frame));
     FILE_UTILITIES::Create_Directory(example.output_directory+"/common");
     FILE_UTILITIES::Write_To_Text_File(example.output_directory+STRING_UTILITIES::string_sprintf("/%d/frame_title",frame),example.frame_title);
-    if(frame==example.first_frame) 
+    if(frame == example.first_frame) 
         FILE_UTILITIES::Write_To_Text_File(example.output_directory+"/common/first_frame",frame,"\n");
     example.Write_Output_Files(frame);
     FILE_UTILITIES::Write_To_Text_File(example.output_directory+"/common/last_frame",frame,"\n");

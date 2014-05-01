@@ -30,7 +30,8 @@ class WATER_EXAMPLE
 public:
     STREAM_TYPE stream_type;
     T initial_time;
-    int first_frame,last_frame;
+    int first_frame;
+	int last_frame;
     T frame_rate;
     int restart;
     std::string frame_title;
@@ -45,11 +46,11 @@ public:
     THREAD_QUEUE* thread_queue;    
     PROJECTION_COLLIDABLE_UNIFORM<GRID<TV> > projection;
     ARRAY<T,FACE_INDEX<TV::dimension> > face_velocities;
-    ADVECTION_SEMI_LAGRANGIAN_UNIFORM_BETA<GRID<TV>,T, AVERAGING_UNIFORM<GRID<TV>, FACE_LOOKUP_UNIFORM<GRID<TV> > >,LINEAR_INTERPOLATION_UNIFORM<GRID<TV>,T,FACE_LOOKUP_UNIFORM<GRID<TV> > > > advection_scalar;
+    ADVECTION_SEMI_LAGRANGIAN_UNIFORM_BETA<GRID<TV>,T, AVERAGING_UNIFORM<GRID<TV>, FACE_LOOKUP_UNIFORM<GRID<TV> >  >,LINEAR_INTERPOLATION_UNIFORM<GRID<TV>,T,FACE_LOOKUP_UNIFORM<GRID<TV> > > > advection_scalar;
     BOUNDARY_UNIFORM<GRID<TV>,T> boundary_scalar;
     BOUNDARY_UNIFORM<GRID<TV>,T> *boundary;
     T_LEVELSET levelset;
-    VECTOR<VECTOR<bool,2>,TV::dimension> domain_boundary;    
+    VECTOR<VECTOR<bool, 2>, TV::dimension> domain_boundary;    
     //RANGE<TV> source;
     pthread_mutex_t lock;
 
@@ -57,53 +58,11 @@ public:
     virtual ~WATER_EXAMPLE();
 
     T CFL(ARRAY<T,FACE_INDEX<TV::dimension> >& face_velocities);
-    void CFL_Threaded(RANGE<TV_INT>& domain,ARRAY<T,FACE_INDEX<TV::dimension> >& face_velocities,T& dt);
-    
-    T Time_At_Frame(const int frame) const
-    {return initial_time+(frame-first_frame)/frame_rate;}
-
-    void Initialize_Grid(TV_INT counts,RANGE<TV> domain)
-    {mac_grid.Initialize(counts,domain,true);}
-    
-    void Initialize_Fields() //initializes level set phi and face velocities
-    {
-	for(typename GRID<TV>::FACE_ITERATOR iterator(mac_grid);iterator.Valid();iterator.Next()) 
-	{
-		face_velocities(iterator.Full_Index())=0;//this sets initial velocites
-//		face_velocities(iterator.Full_Index(2))=0;//this sets initial velocites
-	}
-    	for(typename GRID<TV>::CELL_ITERATOR iterator(mac_grid);iterator.Valid();iterator.Next())
-	{
-	    if(iterator.Location()(1)>=.2 && iterator.Location()(1)<=.8)//This is the x location of the initial water
-	    {
-		if(iterator.Location()(2)>=.8)//this affects the y location of the initial water
-		{
-levelset.phi(iterator.Cell_Index())=1;
-		}
-		else
-		{
-levelset.phi(iterator.Cell_Index())=-(iterator.Location()(2)-mac_grid.dX(2)*height);// this sets initial water location
-		}
-//levelset.phi(iterator.Cell_Index())=.1-(iterator.Location()(2)-mac_grid.dX(2)*height);// this sets initial water location
-	    }
-	    else
-	    {
-	        levelset.phi(iterator.Cell_Index())=1;// air is set as 1 and water is -1
-	    }
-	}
-    }
-    
-    void Get_Scalar_Field_Sources(const T time_velocities)
-    { if(time_velocities>3) return;
-    for(typename GRID<TV>::CELL_ITERATOR iterator(mac_grid);iterator.Valid();iterator.Next()){TV_INT index=iterator.Cell_Index();
-        //T distance=abs((iterator.Location()-source.min_corner).Min());
-        //distance=min(distance,abs((iterator.Location()-source.max_corner).Min()));
-        //T phi=0;
-	//	if(source.Lazy_Inside(iterator.Location())) phi=-1*distance; else phi=distance;
-	
-        ////levelset.phi(index)=min(levelset.phi(index),phi);
-	}
-    }
+    void CFL_Threaded(RANGE<TV_INT>& domain, ARRAY<T,FACE_INDEX<TV::dimension> >& face_velocities, T& dt);
+    T Time_At_Frame(const int frame) const {return initial_time+(frame-first_frame)/frame_rate;}
+	void Initialize_Grid(TV_INT counts, RANGE<TV> domain) {mac_grid.Initialize(counts, domain, true);}
+	void Initialize_Fields(); //initializes level set phi and face velocities
+	void Get_Scalar_Field_Sources(const T time_velocities);
 
     virtual void Write_Output_Files(const int frame);
     virtual void Read_Output_Files(const int frame);

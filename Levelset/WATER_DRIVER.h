@@ -26,6 +26,7 @@ protected:
     int output_number;
 
     WATER_EXAMPLE<TV>& example;
+
 public:
     WATER_DRIVER(WATER_EXAMPLE<TV>& example);
     virtual ~WATER_DRIVER();
