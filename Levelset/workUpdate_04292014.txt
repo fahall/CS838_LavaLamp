@@ -4,3 +4,6 @@ we have implemented a no slip boundary along the walls, inside WATER_EXAMPLE.CPP
 we have observed significant errors associated with mass due to level sets.
 we have edited the main.cpp file, adding a shorcut for resolution and frames run.
 we have heavily modified the original source code for our purposes.
+wtrst finds where we added the phi values for water vs air in the code.
+added externalForce in water_driver currently just returns gravity
+added many cout trying to find a way to look at size of arrays, trying to get count of cells from this operation.

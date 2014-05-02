@@ -38,7 +38,7 @@ public:
     int write_substeps_level;
     bool write_debug_data;
     std::string output_directory;
-    int height;
+    int height;//hey mike, we added this-DA 05/02/2014
     T cfl;
 
     GRID<TV> mac_grid;
@@ -46,6 +46,8 @@ public:
     THREAD_QUEUE* thread_queue;    
     PROJECTION_COLLIDABLE_UNIFORM<GRID<TV> > projection;
     ARRAY<T,FACE_INDEX<TV::dimension> > face_velocities;
+    //PROJECTION_COLLIDABLE_UNIFORM<GRID<TV> > cell_heat;// we are assuming this makes an array of type double which is length of cell_index long, we think it has one entry per grid cell.
+    //double cell_heat[FACE_INDEX<TV::dimension>];
     ADVECTION_SEMI_LAGRANGIAN_UNIFORM_BETA<GRID<TV>,T, AVERAGING_UNIFORM<GRID<TV>, FACE_LOOKUP_UNIFORM<GRID<TV> >  >,LINEAR_INTERPOLATION_UNIFORM<GRID<TV>,T,FACE_LOOKUP_UNIFORM<GRID<TV> > > > advection_scalar;
     BOUNDARY_UNIFORM<GRID<TV>,T> boundary_scalar;
     BOUNDARY_UNIFORM<GRID<TV>,T> *boundary;

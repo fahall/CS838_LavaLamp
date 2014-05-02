@@ -30,7 +30,7 @@ WATER_EXAMPLE(const STREAM_TYPE stream_type_input, int number_of_threads)
 	mac_grid(TV_INT(), RANGE<TV>::Unit_Box(), true),
 	mpi_grid(0),
     thread_queue(number_of_threads>1?new THREAD_QUEUE(number_of_threads):0),
-	projection(mac_grid, false, false, thread_queue),
+	projection(mac_grid, false, false, thread_queue),//this calls the projection solver the first time
 	advection_scalar(thread_queue),
     boundary(0),
 	levelset(mac_grid, *new ARRAY<T,TV_INT>())
@@ -40,6 +40,8 @@ WATER_EXAMPLE(const STREAM_TYPE stream_type_input, int number_of_threads)
 		domain_boundary(i)(1) = true;
 		domain_boundary(i)(2) = true;
 	}
+//std::cout<<"This is the cell output = "<<projection.p<<std::endl;//this outputs four 0's
+//std::cout<<"This is the tv = "<<TV::dimension<<std::endl;//this outputs 2
     pthread_mutex_init(&lock,0);    
 }
 //#####################################################################
@@ -72,7 +74,9 @@ Initialize_Fields()
 	    {
 	        levelset.phi(iterator.Cell_Index())=1;// air is set as 1 and water is -1
 	    }
-	}
+	}//wtrst
+
+//std::cout<<"This is the cell output = "<<projection.p<<std::endl;//this outputs four 0's
 }
 //#####################################################################
 // ~WATER_EXAMPLE
@@ -141,8 +145,8 @@ CFL_Threaded(RANGE<TV_INT>& domain,ARRAY<T,FACE_INDEX<TV::dimension> >& face_vel
 template<class TV> void WATER_EXAMPLE<TV>::
 Set_Boundary_Conditions(const T time)
 {
-    projection.elliptic_solver->psi_D.Fill(false);
-    projection.elliptic_solver->psi_N.Fill(false);
+    projection.elliptic_solver->psi_D.Fill(false);//dirichlet or deer-ish-lay
+    projection.elliptic_solver->psi_N.Fill(false);//neumann
     
     for(int axis=1;axis<=TV::dimension;axis++)
     {
@@ -195,8 +199,8 @@ Set_Boundary_Conditions(const T time)
 		for(typename GRID<TV>::FACE_ITERATOR iterator(mac_grid,1,GRID<TV>::BOUNDARY_REGION,side);iterator.Valid();iterator.Next())
 			{
 			TV_INT cell=iterator.Face_Index()+interior_cell_offset;
-            		projection.elliptic_solver->psi_D(cell)=true;
-			projection.p(cell)=0;
+            		projection.elliptic_solver->psi_D(cell)=true;//commented
+			projection.p(cell)=1;
 			}
         }	
     }

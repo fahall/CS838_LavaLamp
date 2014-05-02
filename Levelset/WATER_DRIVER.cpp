@@ -118,6 +118,15 @@ Convect(const T dt,const T time)
     example.advection_scalar.Update_Advection_Equation_Face(example.mac_grid,example.face_velocities,face_velocities_ghost,face_velocities_ghost,*example.boundary,dt,time);
 }
 //#####################################################################
+// External Force on may 2 2014 
+//#####################################################################
+template<class TV> int WATER_DRIVER<TV>::
+addExternalForces()
+{
+int externalForces=-9.81;
+return externalForces;
+}
+//#####################################################################
 // Project
 //#####################################################################
 template<class TV> void WATER_DRIVER<TV>::
@@ -171,7 +180,7 @@ Advance_To_Target_Time(const T target_time)
 			int axis=iterator.Axis();
 			if (axis != 2) 
 				{continue;}
-            example.face_velocities.Component(axis)(iterator.Face_Index()) -= -dt*9.81; //sneaky gravity was 9.8 put to zero for test
+            example.face_velocities.Component(axis)(iterator.Face_Index()) -= -dt*addExternalForces(); //sneaky gravity was 9.8 put to zero for test
 		}
         Project(dt, time);
         time += dt;
