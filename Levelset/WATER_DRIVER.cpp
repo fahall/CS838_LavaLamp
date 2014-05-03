@@ -72,7 +72,9 @@ Initialize()
     example.projection.Initialize_Grid(example.mac_grid);
     example.face_velocities.Resize(example.mac_grid);
     example.levelset.phi.Resize(example.mac_grid.Domain_Indices(3));
+	example.temperature.Resize(example.mac_grid.Domain_Indices(3));		// Mike 05/03/14
     example.Initialize_Fields();
+	
 
     // setup laplace
     example.projection.elliptic_solver->Set_Relative_Tolerance(1e-9);
@@ -100,31 +102,108 @@ template<class TV> void WATER_DRIVER<TV>::
 Scalar_Advance(const T dt,const T time)
 {
     example.Get_Scalar_Field_Sources(time);
+	
+	// advect the levelset
     ARRAY<T,TV_INT> phi_ghost(example.mac_grid.Domain_Indices(3));
     example.boundary->Set_Fixed_Boundary(true,0);
     example.boundary->Fill_Ghost_Cells(example.mac_grid,example.levelset.phi,phi_ghost,dt,time,3);
     example.advection_scalar.Update_Advection_Equation_Cell(example.mac_grid,example.levelset.phi,phi_ghost,example.face_velocities,*example.boundary,dt,time); 
     example.boundary->Set_Fixed_Boundary(false);
     example.levelset.Fast_Marching_Method();
+
+	// advect the temperatures -- Mike 5/3/2014
+    ARRAY<T,TV_INT> temperature_ghost(example.mac_grid.Domain_Indices(3));
+    example.boundary->Fill_Ghost_Cells(example.mac_grid,example.temperature,temperature_ghost,dt,time,3);
+    example.advection_scalar.Update_Advection_Equation_Cell(example.mac_grid,example.temperature,temperature_ghost,example.face_velocities,*example.boundary,dt,time); 
 }
 //#####################################################################
 // Convect
 //#####################################################################
 template<class TV> void WATER_DRIVER<TV>::
 Convect(const T dt,const T time)
-{
+{	
+	// advect the velocities
     ARRAY<T,FACE_INDEX<TV::dimension> > face_velocities_ghost(example.mac_grid,3,false);
     example.boundary->Fill_Ghost_Cells_Face(example.mac_grid,example.face_velocities,face_velocities_ghost,time,3);
     example.advection_scalar.Update_Advection_Equation_Face(example.mac_grid,example.face_velocities,face_velocities_ghost,face_velocities_ghost,*example.boundary,dt,time);
 }
 //#####################################################################
-// External Force on may 2 2014 
+// Add_Body_Forces on may 2 2014 -- updated by mike on may 3 2014
 //#####################################################################
-template<class TV> int WATER_DRIVER<TV>::
-addExternalForces()
+template<class TV> void WATER_DRIVER<TV>::
+Add_Body_Forces(const T dt, const T time)
 {
-int externalForces=-9.81;
-return externalForces;
+	T density1 = 1.0;
+	T density2 = 1.1;
+
+	// incorporate buoyancy
+	// iterate through all cells and adjust velocity based on cell temperature, which liquid, and density
+	
+	
+
+
+	T gravity = -9.81;
+	T buoyancy;
+
+	//This is where we iterate through all 'water' cells and adjust the temperature
+	// 'air' cells will be set to a constant value. 
+
+    //For all dimensions: x, y, and maybe z
+    for(int axis=1;axis<=TV::dimension;axis++)
+    {
+		// Look at both sides of this cell along this dimension (e.g. Left/Right, Up/Down, Front/Back)
+		for(int axis_side=1;axis_side<=2;axis_side++)
+		{
+			//Give this side a unique number relative to this cell (1-4 for 2d) or (1-6 for 3d)
+			int side=2*(axis-1)+axis_side; //making a value for side...
+			
+			//Get the offset to get the index of the cell relative to the index of this face
+			TV_INT interior_cell_offset;
+			if(axis_side==1)
+			{
+				interior_cell_offset = TV_INT();
+			}
+			else
+			{
+				interior_cell_offset = -TV_INT::Axis_Vector(axis);
+			} 
+	
+			//Step through every face
+			for(typename GRID<TV>::FACE_ITERATOR iterator(example.mac_grid); iterator.Valid(); iterator.Next())
+			{
+					//Grab the index using the offset we calculated above
+			        TV_INT cell=iterator.Face_Index()+interior_cell_offset;
+			        if(example.levelset.phi(cell)<=0)//If this cell is in water
+					{
+						//Calculate Buoyancy based on temperature
+						buoyancy = 0;
+					}
+			        else //In air
+					{
+						//Set Buoyancy to a constant, since we are in the 'air'
+						buoyancy = 0;
+					}
+
+					//We now have gravity & buoyancy. We will combine them and then set velocity based on all external forces. 
+					T externalForces = gravity + buoyancy;
+
+					int axis=iterator.Axis();
+					if (axis != 2) 
+					{
+						continue;
+					}
+		            example.face_velocities.Component(axis)(iterator.Face_Index()) -= -dt*externalForces; //sneaky gravity was 9.8 put to zero for test
+			}
+		}
+	}
+
+
+
+	
+
+
+
+
 }
 //#####################################################################
 // Project
@@ -175,13 +254,7 @@ Advance_To_Target_Time(const T target_time)
 		// advance the simulation
         Scalar_Advance(dt,time);
         Convect(dt,time);
-        for (typename GRID<TV>::FACE_ITERATOR iterator(example.mac_grid); iterator.Valid(); iterator.Next())
-		{
-			int axis=iterator.Axis();
-			if (axis != 2) 
-				{continue;}
-            example.face_velocities.Component(axis)(iterator.Face_Index()) -= -dt*addExternalForces(); //sneaky gravity was 9.8 put to zero for test
-		}
+        Add_Body_Forces(dt,time);
         Project(dt, time);
         time += dt;
 	}

@@ -1,2 +1,2 @@
 export PLATFORM=nocona
-scons -u TYPE=release CXX=g++
+scons -u TYPE=release CXX=g++ -j 6

@@ -5,8 +5,9 @@
 #include "WATER_DRIVER.h"
 #include "WATER_EXAMPLE.h"
 
-int numframe   = 5;//number of frames to run for
+int numframe   = 50;//number of frames to run for
 int resolution = 50;//grid resolution x by x
+
 using namespace PhysBAM;
 
 template<class TV> 
@@ -14,27 +15,31 @@ void Execute_Main_Program(STREAM_TYPE& stream_type, PARSE_ARGS& parse_args, MPI_
 { 
     typedef VECTOR<int,TV::dimension> TV_INT;
 
+
     WATER_EXAMPLE<TV>* example=new WATER_EXAMPLE<TV>(stream_type, parse_args.Get_Integer_Value("-threads"));
+
 
     int scale = parse_args.Get_Integer_Value("-scale");	// set as 'resolution' as a global variable - top of file
     RANGE<TV> range(TV(), TV::All_Ones_Vector());	// e.g. float vectors (.0, .0) to (1., 1.)?
     TV_INT counts = TV_INT::All_Ones_Vector() * scale;	// e.g. integer vector (50, 50)
-    example->Initialize_Grid(counts, range);
 
+    example->Initialize_Grid(counts, range);
     example->restart = parse_args.Get_Integer_Value("-restart");
     example->last_frame = parse_args.Get_Integer_Value("-e");
     example->write_substeps_level = parse_args.Get_Integer_Value("-substep");
     example->write_debug_data = true;
     example->height = 0.25*scale; //represents height of water relative to container size 
 
+	/*
     TV point1=TV::All_Ones_Vector()*(TV::dimension==2?.65:.45);
 	TV point2=TV::All_Ones_Vector()*.75;
 	point1(1)=0;
 	point2(1)=0;
 	point1(2)=0;
 	point2(2)=0;
-    // example->source.min_corner=point1;
-	// example->source.max_corner=point2;
+    example->source.min_corner=point1;
+	example->source.max_corner=point2;
+	*/
 
     if (mpi_world.initialized)
 	{

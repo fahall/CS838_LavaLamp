@@ -49,14 +49,16 @@ WATER_EXAMPLE(const STREAM_TYPE stream_type_input, int number_of_threads)
 //#####################################################################
 template<class TV> void WATER_EXAMPLE<TV>::
 Initialize_Fields()
-{
+{	
+	// initialize all cells to room temperature -- Mike 05/03/2014
+	for(typename GRID<TV>::CELL_ITERATOR iterator(mac_grid);iterator.Valid();iterator.Next()) {temperature(iterator.Cell_Index())=298.0;}	
 	for (typename GRID<TV>::FACE_ITERATOR iterator(mac_grid); iterator.Valid(); iterator.Next()) 
 	{
 		face_velocities(iterator.Full_Index())=0;//this sets initial velocites
 		// face_velocities(iterator.Full_Index(2))=0;//this sets initial velocites
 	}
     
-	for (typename GRID<TV>::CELL_ITERATOR iterator(mac_grid); iterator.Valid(); iterator.Next())
+	/* for (typename GRID<TV>::CELL_ITERATOR iterator(mac_grid); iterator.Valid(); iterator.Next())
 	{
 	    if (iterator.Location()(1) >= 0.2 && iterator.Location()(1) <= 0.8) //This is the x location of the initial water
 	    {
@@ -75,6 +77,24 @@ Initialize_Fields()
 	        levelset.phi(iterator.Cell_Index())=1;// air is set as 1 and water is -1
 	    }
 	}//wtrst
+	// what does wtrst mean?  -- Mike 
+	// */
+
+	// sphere of water in the center -- Mike 05/03/14
+	TV center = TV::All_Ones_Vector() * 0.5;
+	T radius = 0.2;
+	T negative_radius_squared = (-1.0)*radius*radius;
+	TV product;
+	T d;
+	for (typename GRID<TV>::CELL_ITERATOR i(mac_grid); i.Valid(); i.Next()) {
+		product = i.Location()-center;
+		product *= product;
+		d = negative_radius_squared;
+		for(int i=1; i<=TV::dimension; i++) d+=product(i);
+		levelset.phi(i.Cell_Index()) = d;
+	}
+
+
 
 //std::cout<<"This is the cell output = "<<projection.p<<std::endl;//this outputs four 0's
 }
@@ -145,8 +165,8 @@ CFL_Threaded(RANGE<TV_INT>& domain,ARRAY<T,FACE_INDEX<TV::dimension> >& face_vel
 template<class TV> void WATER_EXAMPLE<TV>::
 Set_Boundary_Conditions(const T time)
 {
-    projection.elliptic_solver->psi_D.Fill(false);//dirichlet or deer-ish-lay
-    projection.elliptic_solver->psi_N.Fill(false);//neumann
+    projection.elliptic_solver->psi_D.Fill(false); //dirichlet or deer-ish-lay
+    projection.elliptic_solver->psi_N.Fill(false); //neumann
     
     for(int axis=1;axis<=TV::dimension;axis++)
     {
@@ -164,46 +184,52 @@ Set_Boundary_Conditions(const T time)
 	else
 	{
 		interior_cell_offset = -TV_INT::Axis_Vector(axis);
-                exterior_cell_offset = TV_INT();
-                boundary_face_offset = -TV_INT::Axis_Vector(axis);
+        exterior_cell_offset = TV_INT();
+        boundary_face_offset = -TV_INT::Axis_Vector(axis);
 	} 
 	
-        if(domain_boundary(axis)(axis_side))
-	{//this is a boundary
-            for(typename GRID<TV>::FACE_ITERATOR iterator(mac_grid,1,GRID<TV>::BOUNDARY_REGION,side);iterator.Valid();iterator.Next())
+	std::cout << std::endl;
+    if(domain_boundary(axis)(axis_side))  //this is a boundary and it always evaluates to true -- why?
+	{
+        for(typename GRID<TV>::FACE_ITERATOR iterator(mac_grid,1,GRID<TV>::BOUNDARY_REGION,side);iterator.Valid();iterator.Next())
 	    {
+				//std::cout << iterator.Face_Index()(1) << std::endl; 
+				//std::cout << "Face_Index() : " << iterator.Face_Index() << std::endl;
                 TV_INT face=iterator.Face_Index()+boundary_face_offset;
-                if(levelset.phi(face+interior_cell_offset)<=0)//checks if level set phi is less than or equal to zero(not water) at boundary face
-		{
+				// std::cout << "face : " << face << std::endl;
+                if(levelset.phi(face+interior_cell_offset)<=0)//checks if level set phi is less than or equal to zero(in water) at boundary face
+				{
+					if(face_velocities.Component(axis).Valid_Index(face))//is this a valid position for face velocities? if so
+					{
+						projection.elliptic_solver->psi_N.Component(axis)(face)=true;  //pressure solver is looking for a valid normal component
 
-                    if(face_velocities.Component(axis).Valid_Index(face))//is this a valid position for face velocities? if so
-			{
-			projection.elliptic_solver->psi_N.Component(axis)(face)=true;//pressure solver is looking for a valid normal component
-//std::cout<<boundary_face_offset<<std::endl;
-			face_velocities.Component(1)(face)=0;//no slip velocity condition
-			face_velocities.Component(2)(face)=0;//no slip velocity condition
-			face_velocities.Component(1)(face+boundary_face_offset)=0;//no slip velocity condition
-			face_velocities.Component(2)(face+boundary_face_offset)=0;//no slip velocity condition
-			}//wlbnd
-		}
+						face_velocities.Component(1)(face)=0;//no slip velocity condition
+						face_velocities.Component(axis)(face) = 0.0;//no slip velocity condition
+						face_velocities.Component(1)(face+boundary_face_offset)=0;//no slip velocity condition
+						face_velocities.Component(2)(face+boundary_face_offset)=0;//no slip velocity condition
+					// */					
+					}//wlbnd
+				}
                 else
-		{
-		TV_INT cell=face+exterior_cell_offset;
-		projection.elliptic_solver->psi_D(cell)=true;
-		projection.p(cell)=0;
-		}
+				{
+					TV_INT cell=face+exterior_cell_offset;
+					projection.elliptic_solver->psi_D(cell)=true;
+					projection.p(cell)=0;
+				}
 	    }
 	}
-        else
+/*    else // this else block is never reached
 	{
 		for(typename GRID<TV>::FACE_ITERATOR iterator(mac_grid,1,GRID<TV>::BOUNDARY_REGION,side);iterator.Valid();iterator.Next())
-			{
+		{
 			TV_INT cell=iterator.Face_Index()+interior_cell_offset;
             		projection.elliptic_solver->psi_D(cell)=true;//commented
 			projection.p(cell)=1;
-			}
-        }	
-    }
+		}
+    }	
+    
+// */
+	}
     }
     for(typename GRID<TV>::FACE_ITERATOR iterator(mac_grid);iterator.Valid();iterator.Next())
     {
@@ -238,6 +264,7 @@ Write_Output_Files(const int frame)
     FILE_UTILITIES::Write_To_File(stream_type,output_directory+"/"+f+"/grid",mac_grid);
     FILE_UTILITIES::Write_To_File(stream_type,output_directory+"/common/grid",mac_grid);
     FILE_UTILITIES::Write_To_File(stream_type,output_directory+"/"+f+"/levelset",levelset);
+	FILE_UTILITIES::Write_To_File(stream_type,output_directory+"/"+f+"/temperature",temperature);	// writing temperature -- Mike 05/03/14
     if(write_debug_data){
         FILE_UTILITIES::Write_To_File(stream_type,output_directory+"/"+f+"/pressure",projection.p);
         FILE_UTILITIES::Write_To_File(stream_type,output_directory+"/"+f+"/psi_N",projection.elliptic_solver->psi_N);
@@ -256,6 +283,8 @@ Read_Output_Files(const int frame)
     if(FILE_UTILITIES::File_Exists(filename)){LOG::cout<<"Reading mac_velocities "<<filename<<std::endl;FILE_UTILITIES::Read_From_File(stream_type,filename,face_velocities);}
     filename=output_directory+"/"+f+"/pressure";
     if(FILE_UTILITIES::File_Exists(filename)){LOG::cout<<"Reading pressure "<<filename<<std::endl;FILE_UTILITIES::Read_From_File(stream_type,filename,projection.p);}
+//	filename=output_directory+"/"+f+"/temperature";
+//    if(FILE_UTILITIES::File_Exists(filename)){LOG::cout<<"Reading temperature "<<filename<<std::endl;FILE_UTILITIES::Read_From_File(stream_type,filename,temperature);}
 }
 //#####################################################################
 template class WATER_EXAMPLE<VECTOR<float,1> >;

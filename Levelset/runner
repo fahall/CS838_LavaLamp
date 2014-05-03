@@ -1,7 +1,8 @@
 cp -r water_nocona water_nocona_old
 cp -r output output_old
 rm -rf water_nocona output
+export PHYSBAM="/PhysBAM-CS838"
 export PLATFORM=nocona
-scons -u TYPE=release CXX=g++
+scons -u TYPE=release CXX=g++ -j 6
 ./water_nocona  
 ../../opengl_2d/opengl_2d_nocona output/

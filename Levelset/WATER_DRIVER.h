@@ -33,8 +33,7 @@ public:
 
     void Scalar_Advance(const T dt,const T time);
     void Convect(const T dt,const T time);
-    int addExternalForces();
-    //void Add_Forces(const T dt,const T time);
+    void Add_Body_Forces(const T dt, const T time);  // updated by Mike 05/02/14
     void Project(const T dt,const T time);
     void Execute_Main_Program();
     void Initialize();
