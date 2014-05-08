@@ -197,16 +197,17 @@ Set_Boundary_Conditions(const T time)
 				//std::cout << "Face_Index() : " << iterator.Face_Index() << std::endl;
                 TV_INT face=iterator.Face_Index()+boundary_face_offset;
 				// std::cout << "face : " << face << std::endl;
-                if(levelset.phi(face+interior_cell_offset)<=0)//checks if level set phi is less than or equal to zero(in water) at boundary face
+                //if(levelset.phi(face+interior_cell_offset)<=0)//checks if level set phi is less than or equal to zero(in water) at boundary face
+                if(true)//checks if level set phi is less than or equal to zero(in water) at boundary face
 				{
 					if(face_velocities.Component(axis).Valid_Index(face))//is this a valid position for face velocities? if so
 					{
 						projection.elliptic_solver->psi_N.Component(axis)(face)=true;  //pressure solver is looking for a valid normal component
-
-						face_velocities.Component(1)(face)=0;//no slip velocity condition
-						face_velocities.Component(axis)(face) = 0.0;//no slip velocity condition
-						face_velocities.Component(1)(face+boundary_face_offset)=0;//no slip velocity condition
-						face_velocities.Component(2)(face+boundary_face_offset)=0;//no slip velocity condition
+						face_velocities.Component(axis)(face)=0;
+					//	face_velocities.Component(1)(face)=0;//no slip velocity condition
+					//	face_velocities.Component(axis)(face) = 0.0;//no slip velocity condition
+					//	face_velocities.Component(1)(face+boundary_face_offset)=0;//no slip velocity condition
+					//	face_velocities.Component(2)(face+boundary_face_offset)=0;//no slip velocity condition
 					// */					
 					}//wlbnd
 				}

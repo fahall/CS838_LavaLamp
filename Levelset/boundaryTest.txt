@@ -1,0 +1,2 @@
+we are working with the boundary conditions currently, we are trying to get a zero value at the bottom of the grid, and zero gradient on the walls.  current efforts have shown that.
+the 1 domain gives values for y boundarys and the 2 domain gives x boundaries.
