@@ -172,7 +172,7 @@ Set_Boundary_Conditions(const T time)
     {
     for(int axis_side=1;axis_side<=2;axis_side++)
     {
-	int side=2*(axis-1)+axis_side; //making a value for side...
+	int side=2*(axis-1)+axis_side; //making a value for side... 1-4 or 1-6; 1=left, 2 = right, 3 = bottom, 4 = top, front = 5
 	//if axis_side==1 then interior_cell_offset=TV_INT() else -TV_INT
 	TV_INT interior_cell_offset, exterior_cell_offset, boundary_face_offset;
 	if(axis_side==1)
@@ -191,8 +191,10 @@ Set_Boundary_Conditions(const T time)
 	std::cout << std::endl;
     if(domain_boundary(axis)(axis_side))  //this is a boundary and it always evaluates to true -- why?
 	{
-        for(typename GRID<TV>::FACE_ITERATOR iterator(mac_grid,1,GRID<TV>::BOUNDARY_REGION,side);iterator.Valid();iterator.Next())
+        for(typename GRID<TV>::FACE_ITERATOR iterator(mac_grid,1,GRID<TV>::BOUNDARY_REGION,side); iterator.Valid(); iterator.Next())
+             
 	    {
+		//typename GRID<TV>::FACE_ITERATOR iterator(mac_grid,1,GRID<TV>::BOUNDARY_REGION,side);
 				//std::cout << iterator.Face_Index()(1) << std::endl; 
 				//std::cout << "Face_Index() : " << iterator.Face_Index() << std::endl;
                 TV_INT face=iterator.Face_Index()+boundary_face_offset;
@@ -203,7 +205,17 @@ Set_Boundary_Conditions(const T time)
 					if(face_velocities.Component(axis).Valid_Index(face))//is this a valid position for face velocities? if so
 					{
 						projection.elliptic_solver->psi_N.Component(axis)(face)=true;  //pressure solver is looking for a valid normal component
-						face_velocities.Component(axis)(face)=0;
+
+						
+						face_velocities.Component(axis)(face)=0;//this sets boundary velocity to a value i.e. container moves
+						/*for(int i = 1; i <= TV::Dimension; i++)
+						{
+							for(int j = 1; j <= 2; j++)
+							{
+								face_velocities.Component(0)(j) = 0;
+							}
+						}
+*/
 					//	face_velocities.Component(1)(face)=0;//no slip velocity condition
 					//	face_velocities.Component(axis)(face) = 0.0;//no slip velocity condition
 					//	face_velocities.Component(1)(face+boundary_face_offset)=0;//no slip velocity condition
@@ -245,8 +257,8 @@ Set_Boundary_Conditions(const T time)
     {
 	if(levelset.phi(iterator.Cell_Index())>0)
 	{
-        projection.elliptic_solver->psi_D(iterator.Cell_Index())=true;
-	projection.p(iterator.Cell_Index())=0;
+        projection.elliptic_solver->psi_D(iterator.Cell_Index())= false;  // mike changed this from true;
+	//projection.p(iterator.Cell_Index())=0;
 	}
     }
     if(projection.elliptic_solver->mpi_grid){

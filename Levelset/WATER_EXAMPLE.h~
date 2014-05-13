@@ -46,9 +46,13 @@ public:
     THREAD_QUEUE* thread_queue;    
     PROJECTION_COLLIDABLE_UNIFORM<GRID<TV> > projection;
     ARRAY<T,FACE_INDEX<TV::dimension> > face_velocities;
-	ARRAY<T,TV_INT> temperature;
+	
     //PROJECTION_COLLIDABLE_UNIFORM<GRID<TV> > cell_heat;// we are assuming this makes an array of type double which is length of cell_index long, we think it has one entry per grid cell.
     //double cell_heat[FACE_INDEX<TV::dimension>];
+	
+	// I think all we need to keep track of the heat / temperature is just an arry -- Mike 5/3/2014		
+	ARRAY<T,TV_INT> temperature;
+
     ADVECTION_SEMI_LAGRANGIAN_UNIFORM_BETA<GRID<TV>,T, AVERAGING_UNIFORM<GRID<TV>, FACE_LOOKUP_UNIFORM<GRID<TV> >  >,LINEAR_INTERPOLATION_UNIFORM<GRID<TV>,T,FACE_LOOKUP_UNIFORM<GRID<TV> > > > advection_scalar;
     BOUNDARY_UNIFORM<GRID<TV>,T> boundary_scalar;
     BOUNDARY_UNIFORM<GRID<TV>,T> *boundary;

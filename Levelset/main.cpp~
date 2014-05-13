@@ -5,8 +5,8 @@
 #include "WATER_DRIVER.h"
 #include "WATER_EXAMPLE.h"
 
-int numframe   = 1;//number of frames to run for
-int resolution = 5;//grid resolution x by x
+int numframe   = 25;//number of frames to run for
+int resolution = 21;//grid resolution x by x
 
 using namespace PhysBAM;
 

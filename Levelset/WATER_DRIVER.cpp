@@ -142,7 +142,7 @@ Add_Body_Forces(const T dt, const T time)
 	
 
 
-	T gravity = -9.81;
+	T gravity = -9.81/(10*time+1);
 	T buoyancy;
 
 	//This is where we iterate through all 'water' cells and adjust the temperature
@@ -174,29 +174,36 @@ Add_Body_Forces(const T dt, const T time)
 					//Grab the index using the offset we calculated above
 			        TV_INT cell=iterator.Face_Index()+interior_cell_offset;
 			        if(example.levelset.phi(cell)<=0)//If this cell is in water
-					{
-						//Calculate Buoyancy based on temperature
-						buoyancy = 0;
-					}
+				{
+					//Calculate Buoyancy based on temperature
+					buoyancy = 9.81;
+				}
 			        else //In air
-					{
-						//Set Buoyancy to a constant, since we are in the 'air'
-						buoyancy = 0;
-					}
+				{
+					//Set Buoyancy to a constant, since we are in the 'air'
+					buoyancy = 9.81;
+				}
 
 					//We now have gravity & buoyancy. We will combine them and then set velocity based on all external forces. 
-					T externalForces = gravity + buoyancy;
+				T externalForces = gravity + buoyancy;
 
-					int axis=iterator.Axis();
-					if (axis != 2) 
-					{
-						continue;
-					}
+				int axis=iterator.Axis();
+				if (axis != 2) 
+				{
+					continue;
+				}
 		            example.face_velocities.Component(axis)(iterator.Face_Index()) -= -dt*externalForces; //sneaky gravity was 9.8 put to zero for test
 			}
 		}
 	}
-
+/* 
+	for (typename GRID<TV>::CELL_ITERATOR i(mac_grid); i.Valid(); i.Next()) {
+		product = i.Location()-center;
+		product *= product;
+		d = negative_radius_squared;
+		for(int i=1; i<=TV::dimension; i++) d+=product(i);
+		levelset.phi(i.Cell_Index()) = d;
+	}*/
 
 
 	
@@ -219,19 +226,31 @@ Project(const T dt,const T time)
     example.projection.collidable_solver->Set_Up_Second_Order_Cut_Cell_Method(false);
     example.projection.p*=(1/dt); // unscale pressure
 
+/*
     const int ghost_cells=7;    
-    T delta=3*example.mac_grid.dX.Max();
+    T delta=20*example.mac_grid.dX.Max();
     ARRAY<T,TV_INT> phi_ghost(example.mac_grid.Domain_Indices(3));
     example.boundary->Fill_Ghost_Cells(example.mac_grid,example.levelset.phi,phi_ghost,dt,time,3);
-    for(int axis=1;axis<=GRID<TV>::dimension;axis++){
-        GRID<TV> face_grid=example.mac_grid.Get_Face_Grid(axis);ARRAY<T,TV_INT> phi_face(face_grid.Domain_Indices(),false);T_ARRAYS_BASE& face_velocity=example.face_velocities.Component(axis);
+    for(int axis=1;axis<=GRID<TV>::dimension;axis++)
+    {
+        GRID<TV> face_grid=example.mac_grid.Get_Face_Grid(axis);
+	ARRAY<T,TV_INT> phi_face(face_grid.Domain_Indices(),false);
+	T_ARRAYS_BASE& face_velocity=example.face_velocities.Component(axis);
         ARRAY<bool,TV_INT> fixed_face(face_grid.Domain_Indices());
-        for(typename GRID<TV>::FACE_ITERATOR iterator(example.mac_grid,0,GRID<TV>::WHOLE_REGION,0,axis);iterator.Valid();iterator.Next()){
-            TV_INT index=iterator.Face_Index();phi_face(index)=(T).5*(phi_ghost(iterator.First_Cell_Index())+phi_ghost(iterator.Second_Cell_Index()));
-            if(phi_face(index)<=0) fixed_face(index)=true;if(phi_face(index) >= delta && !fixed_face(index)) face_velocity(index)=(T)0;}
+        for(typename GRID<TV>::FACE_ITERATOR iterator(example.mac_grid,0,GRID<TV>::WHOLE_REGION,0,axis);iterator.Valid();iterator.Next())
+	{
+            TV_INT index=iterator.Face_Index();
+	    phi_face(index)=(T).5*(phi_ghost(iterator.First_Cell_Index())+phi_ghost(iterator.Second_Cell_Index()));
+            if(phi_face(index)<=0) fixed_face(index)=true;
+	    if(phi_face(index) >= delta && !fixed_face(index)) face_velocity(index)=(T)1.0;//where phi > delta, where delta is 3*dx, as noted above, set these velocities = 0; 
+	}
         LOG::cout<<"something..."<<std::endl;  // TODO(jontg): If this log statement doesn't appear, the code crashes in release mode...
-        T_EXTRAPOLATION_SCALAR extrapolate(face_grid,phi_face,face_velocity,ghost_cells);extrapolate.Set_Band_Width(3);extrapolate.Set_Custom_Seed_Done(&fixed_face);
-        extrapolate.Extrapolate();}
+        T_EXTRAPOLATION_SCALAR extrapolate(face_grid,phi_face,face_velocity,ghost_cells);
+	extrapolate.Set_Band_Width(3);
+	extrapolate.Set_Custom_Seed_Done(&fixed_face);
+        extrapolate.Extrapolate();
+    }
+*/
 }
 //#####################################################################
 // Advance_To_Target_Time
@@ -251,7 +270,7 @@ Advance_To_Target_Time(const T target_time)
         else if (time+2*dt >= target_time)
 			{dt = .5*(target_time-time);}
 
-		// advance the simulation
+	// advance the simulation
         Scalar_Advance(dt,time);
         Convect(dt,time);
         Add_Body_Forces(dt,time);
