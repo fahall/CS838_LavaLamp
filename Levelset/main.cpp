@@ -6,7 +6,7 @@
 #include "WATER_EXAMPLE.h"
 
 int numframe   = 25;//number of frames to run for
-int resolution = 100;//grid resolution x by x
+int resolution = 50;//grid resolution x by x
 
 using namespace PhysBAM;
 
@@ -29,6 +29,7 @@ void Execute_Main_Program(STREAM_TYPE& stream_type, PARSE_ARGS& parse_args, MPI_
     example->write_substeps_level = parse_args.Get_Integer_Value("-substep");
     example->write_debug_data = true;
     example->height = 0.25*scale; //represents height of water relative to container size 
+    example->resolution = resolution; //this is so we can call resolution in other places 
 
 	/*
     TV point1=TV::All_Ones_Vector()*(TV::dimension==2?.65:.45);

@@ -1,6 +1,6 @@
-	Location=	[0.454428 0.393231 2.83564]
-	Look_At=	[0.454428 0.393231 0]
+	Location=	[0.5 0.5 2.83564]
+	Look_At=	[0.5 0.5 0]
 	Pseudo_Up=	[0 1 0]
-	Field_Of_View=	26.4602
+	Field_Of_View=	25.6095
 	Focal_Distance=	.1
-	Aspect_Ratio=	1.33333
+	Aspect_Ratio=	1.28898

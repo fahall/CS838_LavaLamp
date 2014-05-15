@@ -21,32 +21,39 @@ scons: done reading SConscript files.
 scons: Building targets ...
 scons: building associated VariantDir targets: build/nocona/release/Projects/userpgs/Levelset
 g++ -o build/nocona/release/Projects/userpgs/Levelset/WATER_DRIVER.os -c -march=nocona -msse3 -mfpmath=sse -O3 -funroll-loops -Wall -Winit-self -Woverloaded-virtual -Wstrict-aliasing=2 -fno-strict-aliasing -fPIC -DNDEBUG -DCOMPILE_WITHOUT_DOUBLE_SUPPORT -DCOMPILE_WITHOUT_DYADIC_SUPPORT -DCOMPILE_WITHOUT_RLE_SUPPORT -DCOMPILE_WITHOUT_ZLIB_SUPPORT -DCOMPILE_ID_TYPES_AS_INT -IPublic_Library Projects/userpgs/Levelset/WATER_DRIVER.cpp
-g++ -o build/nocona/release/Projects/userpgs/Levelset/WATER_EXAMPLE.os -c -march=nocona -msse3 -mfpmath=sse -O3 -funroll-loops -Wall -Winit-self -Woverloaded-virtual -Wstrict-aliasing=2 -fno-strict-aliasing -fPIC -DNDEBUG -DCOMPILE_WITHOUT_DOUBLE_SUPPORT -DCOMPILE_WITHOUT_DYADIC_SUPPORT -DCOMPILE_WITHOUT_RLE_SUPPORT -DCOMPILE_WITHOUT_ZLIB_SUPPORT -DCOMPILE_ID_TYPES_AS_INT -IPublic_Library Projects/userpgs/Levelset/WATER_EXAMPLE.cpp
-Projects/userpgs/Levelset/WATER_EXAMPLE.cpp: In constructor ‘PhysBAM::WATER_EXAMPLE<TV>::WATER_EXAMPLE(PhysBAM::STREAM_TYPE, int) [with TV = PhysBAM::VECTOR<float, 1>]’:
-Projects/userpgs/Levelset/WATER_EXAMPLE.cpp:258:16:   instantiated from here
-Projects/userpgs/Levelset/WATER_EXAMPLE.cpp:43:1: error: ‘PhysBAM::PROJECTION_UNIFORM<PhysBAM::GRID<PhysBAM::VECTOR<float, 1> > >::T_ARRAYS_SCALAR’ has no member named ‘size’
-Projects/userpgs/Levelset/WATER_EXAMPLE.cpp: In constructor ‘PhysBAM::WATER_EXAMPLE<TV>::WATER_EXAMPLE(PhysBAM::STREAM_TYPE, int) [with TV = PhysBAM::VECTOR<float, 2>]’:
-Projects/userpgs/Levelset/WATER_EXAMPLE.cpp:259:16:   instantiated from here
-Projects/userpgs/Levelset/WATER_EXAMPLE.cpp:43:1: error: ‘PhysBAM::PROJECTION_UNIFORM<PhysBAM::GRID<PhysBAM::VECTOR<float, 2> > >::T_ARRAYS_SCALAR’ has no member named ‘size’
-Projects/userpgs/Levelset/WATER_EXAMPLE.cpp: In constructor ‘PhysBAM::WATER_EXAMPLE<TV>::WATER_EXAMPLE(PhysBAM::STREAM_TYPE, int) [with TV = PhysBAM::VECTOR<float, 3>]’:
-Projects/userpgs/Levelset/WATER_EXAMPLE.cpp:260:16:   instantiated from here
-Projects/userpgs/Levelset/WATER_EXAMPLE.cpp:43:1: error: ‘PhysBAM::PROJECTION_UNIFORM<PhysBAM::GRID<PhysBAM::VECTOR<float, 3> > >::T_ARRAYS_SCALAR’ has no member named ‘size’
-scons: *** [build/nocona/release/Projects/userpgs/Levelset/WATER_EXAMPLE.os] Error 1
+Projects/userpgs/Levelset/WATER_DRIVER.cpp: In member function ‘void PhysBAM::WATER_DRIVER<TV>::Add_Body_Forces(PhysBAM::WATER_DRIVER<TV>::T, PhysBAM::WATER_DRIVER<TV>::T) [with TV = PhysBAM::VECTOR<float, 1>, PhysBAM::WATER_DRIVER<TV>::T = float]’:
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:324:16:   instantiated from here
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:183:6: error: ‘PhysBAM::WATER_DRIVER<PhysBAM::VECTOR<float, 1> >::TV_INT’ has no member named ‘y’
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:324:16:   instantiated from here
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:158:8: warning: unused variable ‘side’ [-Wunused-variable]
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:136:4: warning: unused variable ‘density1’ [-Wunused-variable]
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:137:4: warning: unused variable ‘density2’ [-Wunused-variable]
+Projects/userpgs/Levelset/WATER_DRIVER.cpp: In member function ‘void PhysBAM::WATER_DRIVER<TV>::Add_Body_Forces(PhysBAM::WATER_DRIVER<TV>::T, PhysBAM::WATER_DRIVER<TV>::T) [with TV = PhysBAM::VECTOR<float, 2>, PhysBAM::WATER_DRIVER<TV>::T = float]’:
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:325:16:   instantiated from here
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:158:8: warning: unused variable ‘side’ [-Wunused-variable]
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:136:4: warning: unused variable ‘density1’ [-Wunused-variable]
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:137:4: warning: unused variable ‘density2’ [-Wunused-variable]
+Projects/userpgs/Levelset/WATER_DRIVER.cpp: In member function ‘void PhysBAM::WATER_DRIVER<TV>::Add_Body_Forces(PhysBAM::WATER_DRIVER<TV>::T, PhysBAM::WATER_DRIVER<TV>::T) [with TV = PhysBAM::VECTOR<float, 3>, PhysBAM::WATER_DRIVER<TV>::T = float]’:
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:326:16:   instantiated from here
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:158:8: warning: unused variable ‘side’ [-Wunused-variable]
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:136:4: warning: unused variable ‘density1’ [-Wunused-variable]
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:137:4: warning: unused variable ‘density2’ [-Wunused-variable]
+scons: *** [build/nocona/release/Projects/userpgs/Levelset/WATER_DRIVER.os] Error 1
 scons: building terminated because of errors.
 bash: ./water_nocona: No such file or directory
 
 =================== BEGIN STACK BACKTRACE ===================
-#0     (PhysBAM::PROCESS_UTILITIES::Backtrace()+0x1e) [0x7f0898989977]
-#1     (PhysBAM::DEBUG_UTILITIES::Assertion_Failed(char const*, char const*, unsigned int, char const*, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)+0x4c) [0x7f0898a63bd7]
-#2     (PhysBAM::DEBUG_UTILITIES::Assertion_Failed(char const*, char const*, unsigned int, char const*, char const*)+0x3a) [0x7f0898a63cb7]
-#3     (+0x1e6cda) [0x7f0898a63cda]
-#4     (PhysBAM::FILE_UTILITIES::Compare_File_Times_Ignoring_Compression_Suffix(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)+0) [0x7f0898c48d36]
+#0     (PhysBAM::PROCESS_UTILITIES::Backtrace()+0x1e) [0x7fec1fb9e977]
+#1     (PhysBAM::DEBUG_UTILITIES::Assertion_Failed(char const*, char const*, unsigned int, char const*, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)+0x4c) [0x7fec1fc78bd7]
+#2     (PhysBAM::DEBUG_UTILITIES::Assertion_Failed(char const*, char const*, unsigned int, char const*, char const*)+0x3a) [0x7fec1fc78cb7]
+#3     (+0x1e6cda) [0x7fec1fc78cda]
+#4     (PhysBAM::FILE_UTILITIES::Compare_File_Times_Ignoring_Compression_Suffix(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)+0) [0x7fec1fe5dd36]
 #5     () [0x41db99]
-#6     (PhysBAM::BASIC_VISUALIZATION::Parse_Args(int, char**)+0x3f) [0x7f0899859407]
-#7     (PhysBAM::BASIC_VISUALIZATION::Initialize(int, char**)+0x9) [0x7f08998595ed]
-#8     (PhysBAM::BASIC_VISUALIZATION::Initialize_And_Run(int, char**)+0x9) [0x7f0899859619]
+#6     (PhysBAM::BASIC_VISUALIZATION::Parse_Args(int, char**)+0x3f) [0x7fec20a6e407]
+#7     (PhysBAM::BASIC_VISUALIZATION::Initialize(int, char**)+0x9) [0x7fec20a6e5ed]
+#8     (PhysBAM::BASIC_VISUALIZATION::Initialize_And_Run(int, char**)+0x9) [0x7fec20a6e619]
 #9     () [0x419b60]
-#10    (__libc_start_main+0xed) [0x7f08978b476d]
+#10    (__libc_start_main+0xed) [0x7fec1eac976d]
 #11    () [0x419c11]
 ==================== END STACK BACKTRACE ====================
 

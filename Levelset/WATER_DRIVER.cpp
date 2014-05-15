@@ -142,7 +142,7 @@ Add_Body_Forces(const T dt, const T time)
 	
 
 
-	T gravity = -9.81/(10*time+1);
+	T gravity = 0;// /(10*time+1);
 	T buoyancy;
 
 	//This is where we iterate through all 'water' cells and adjust the temperature
@@ -173,15 +173,19 @@ Add_Body_Forces(const T dt, const T time)
 			{
 					//Grab the index using the offset we calculated above
 			        TV_INT cell=iterator.Face_Index()+interior_cell_offset;
+				//std::cout<<"this is axis side = "<<axis_side;
+				//std::cout<<", and this is cell = "<<cell<<std::endl;
+				//std::cout<<", and this is cell x?= "<<cell.x<<std::endl; this returns the x component of this vector, and same for y below. -DTR 05/11/2014
+				//std::cout<<", and this is cell y?= "<<cell.y<<std::endl;
 			        if(example.levelset.phi(cell)<=0)//If this cell is in water
 				{
 					//Calculate Buoyancy based on temperature
-					buoyancy = 9.81;
+					buoyancy = ((example.resolution)/2.0 - cell.x)/10;
 				}
 			        else //In air
 				{
 					//Set Buoyancy to a constant, since we are in the 'air'
-					buoyancy = 9.81;
+					buoyancy = 0;
 				}
 
 					//We now have gravity & buoyancy. We will combine them and then set velocity based on all external forces. 
@@ -226,7 +230,7 @@ Project(const T dt,const T time)
     example.projection.collidable_solver->Set_Up_Second_Order_Cut_Cell_Method(false);
     example.projection.p*=(1/dt); // unscale pressure
 
-/*
+//-DTR this code between here and the below comment can be commented out. we are not sure exactly what it does, however, it gives results either way.
     const int ghost_cells=7;    
     T delta=20*example.mac_grid.dX.Max();
     ARRAY<T,TV_INT> phi_ghost(example.mac_grid.Domain_Indices(3));
@@ -242,7 +246,7 @@ Project(const T dt,const T time)
             TV_INT index=iterator.Face_Index();
 	    phi_face(index)=(T).5*(phi_ghost(iterator.First_Cell_Index())+phi_ghost(iterator.Second_Cell_Index()));
             if(phi_face(index)<=0) fixed_face(index)=true;
-	    if(phi_face(index) >= delta && !fixed_face(index)) face_velocity(index)=(T)1.0;//where phi > delta, where delta is 3*dx, as noted above, set these velocities = 0; 
+	    if(phi_face(index) >= delta && !fixed_face(index)) face_velocity(index)=(T)0.0;//where phi > delta, where delta is 3*dx, as noted above, set these velocities = 0; 
 	}
         LOG::cout<<"something..."<<std::endl;  // TODO(jontg): If this log statement doesn't appear, the code crashes in release mode...
         T_EXTRAPOLATION_SCALAR extrapolate(face_grid,phi_face,face_velocity,ghost_cells);
@@ -250,7 +254,7 @@ Project(const T dt,const T time)
 	extrapolate.Set_Custom_Seed_Done(&fixed_face);
         extrapolate.Extrapolate();
     }
-*/
+ // this whole section of code was commented out, seemingly this has not caused an error and allows us to say that these two liquids are liquid and not just liquid and air. -DTR 05/11/2014
 }
 //#####################################################################
 // Advance_To_Target_Time

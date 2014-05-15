@@ -1,0 +1,16 @@
+for each (cell in grid)
+{
+   if water
+   {
+     buoyancy = thisCell.temperature * FACTOR
+
+   }
+   else
+   {
+     buoyancy = CONSTANT
+   }
+
+   
+}
+
+

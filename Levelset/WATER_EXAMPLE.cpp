@@ -81,7 +81,12 @@ Initialize_Fields()
 	// */
 
 	// sphere of water in the center -- Mike 05/03/14
-	TV center = TV::All_Ones_Vector() * 0.5;
+	//TV center= VECTOR(0.1,0.5);
+	TV center = TV::All_Ones_Vector() * 0.3;
+	//	TV center;
+	//center.y() =  0.5;
+	//center.x =  0.1;
+
 	T radius = 0.2;
 	T negative_radius_squared = (-1.0)*radius*radius;
 	TV product;

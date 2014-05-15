@@ -39,6 +39,7 @@ public:
     bool write_debug_data;
     std::string output_directory;
     int height;  //hey mike, we added this-DA 05/02/2014
+    int resolution;  //hey mike, we added this-DA 05/02/2014
     T cfl;
 
     GRID<TV> mac_grid;

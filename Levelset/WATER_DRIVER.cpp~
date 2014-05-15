@@ -196,7 +196,14 @@ Add_Body_Forces(const T dt, const T time)
 			}
 		}
 	}
-
+/* 
+	for (typename GRID<TV>::CELL_ITERATOR i(mac_grid); i.Valid(); i.Next()) {
+		product = i.Location()-center;
+		product *= product;
+		d = negative_radius_squared;
+		for(int i=1; i<=TV::dimension; i++) d+=product(i);
+		levelset.phi(i.Cell_Index()) = d;
+	}*/
 
 
 	
