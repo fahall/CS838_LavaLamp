@@ -57,12 +57,12 @@ Initialize_Fields()
 		face_velocities(iterator.Full_Index())=0;//this sets initial velocites
 		// face_velocities(iterator.Full_Index(2))=0;//this sets initial velocites
 	}
-    
-	/* for (typename GRID<TV>::CELL_ITERATOR iterator(mac_grid); iterator.Valid(); iterator.Next())
+    //there was a star slash here
+	 for (typename GRID<TV>::CELL_ITERATOR iterator(mac_grid); iterator.Valid(); iterator.Next())
 	{
-	    if (iterator.Location()(1) >= 0.2 && iterator.Location()(1) <= 0.8) //This is the x location of the initial water
-	    {
-			if(iterator.Location()(2) >= 0.8)//this affects the y location of the initial water
+	    //if (iterator.Location()(1) >= 0.0 && iterator.Location()(1) <= 0.3) //This is the x location of the initial water
+	    //{
+			if(iterator.Location()(2) >= 0.2)//this affects the y location of the initial water
 			{
 				levelset.phi(iterator.Cell_Index()) = 1;
 			}		
@@ -71,17 +71,18 @@ Initialize_Fields()
 				levelset.phi(iterator.Cell_Index())= -1.0; //-(iterator.Location()(2)-mac_grid.dX(2)*height); // this sets initial water location
 			}
 			//levelset.phi(iterator.Cell_Index())=.1-(iterator.Location()(2)-mac_grid.dX(2)*height); // this sets initial water location
-	    }
-	    else
-	    {
-	        levelset.phi(iterator.Cell_Index())=1;// air is set as 1 and water is -1
-	    }
+	    //}
+	    //else
+	    //{
+	    //    levelset.phi(iterator.Cell_Index())=1;// air is set as 1 and water is -1
+	    //}
 	}//wtrst
-	// what does wtrst mean?  -- Mike 
-	// */
+	// what does wtrst mean?  -- Mike // hey mike its just an indicator to find this line, it meant waterset. 
+	// there was an end star slash here
 
 	// sphere of water in the center -- Mike 05/03/14
 	//TV center= VECTOR(0.1,0.5);
+/*
 	TV center = TV::All_Ones_Vector() * 0.3;
 	//	TV center;
 	//center.y() =  0.5;
@@ -99,7 +100,7 @@ Initialize_Fields()
 		levelset.phi(i.Cell_Index()) = d;
 	}
 
-
+*/
 
 //std::cout<<"This is the cell output = "<<projection.p<<std::endl;//this outputs four 0's
 }
@@ -175,7 +176,7 @@ Set_Boundary_Conditions(const T time)
     
     for(int axis=1;axis<=TV::dimension;axis++)
     {
-    for(int axis_side=1;axis_side<=2;axis_side++)
+    for(int axis_side=1;axis_side<=TV::dimension;axis_side++)
     {
 	int side=2*(axis-1)+axis_side; //making a value for side... 1-4 or 1-6; 1=left, 2 = right, 3 = bottom, 4 = top, front = 5
 	//if axis_side==1 then interior_cell_offset=TV_INT() else -TV_INT

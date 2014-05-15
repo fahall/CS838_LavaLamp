@@ -152,7 +152,7 @@ Add_Body_Forces(const T dt, const T time)
     for(int axis=1;axis<=TV::dimension;axis++)
     {
 		// Look at both sides of this cell along this dimension (e.g. Left/Right, Up/Down, Front/Back)
-		for(int axis_side=1;axis_side<=2;axis_side++)
+		for(int axis_side=1;axis_side<=TV::dimension;axis_side++)
 		{
 			//Give this side a unique number relative to this cell (1-4 for 2d) or (1-6 for 3d)
 			int side=2*(axis-1)+axis_side; //making a value for side...
@@ -177,10 +177,10 @@ Add_Body_Forces(const T dt, const T time)
 				//std::cout<<", and this is cell = "<<cell<<std::endl;
 				//std::cout<<", and this is cell x?= "<<cell.x<<std::endl; this returns the x component of this vector, and same for y below. -DTR 05/11/2014
 				//std::cout<<", and this is cell y?= "<<cell.y<<std::endl;
-			        if(example.levelset.phi(cell)<=0)//If this cell is in water
+			        if(example.levelset.phi(cell)<=0 && (axis ==1 || axis == 3))//If this cell is in water
 				{
 					//Calculate Buoyancy based on temperature
-					buoyancy = ((example.resolution)/2.0 - cell.x)/10;
+					buoyancy = ((example.resolution)/2.0 - cell.x)/(time*1+1);
 				}
 			        else //In air
 				{
@@ -191,12 +191,18 @@ Add_Body_Forces(const T dt, const T time)
 					//We now have gravity & buoyancy. We will combine them and then set velocity based on all external forces. 
 				T externalForces = gravity + buoyancy;
 
-				int axis=iterator.Axis();
-				if (axis != 2) 
+				//int axis=iterator.Axis();
+				if (axis == 1) 
 				{
-					continue;
+		            example.face_velocities.Component(axis)(iterator.Face_Index()) += dt*externalForces; //sneaky gravity was 8.8 put to zero for test
+			//		continue;
 				}
-		            example.face_velocities.Component(axis)(iterator.Face_Index()) -= -dt*externalForces; //sneaky gravity was 9.8 put to zero for test
+				else if (axis == 3) 
+				{
+		            example.face_velocities.Component(axis)(iterator.Face_Index()) += (dt*externalForces); //sneaky gravity was 8.8 put to zero for test
+			//		continue;
+				}
+		            //example.face_velocities.Component(axis)(iterator.Face_Index()) -= dt*externalForces; //sneaky gravity was 9.8 put to zero for test
 			}
 		}
 	}
