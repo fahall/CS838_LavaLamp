@@ -133,79 +133,73 @@ Convect(const T dt,const T time)
 template<class TV> void WATER_DRIVER<TV>::
 Add_Body_Forces(const T dt, const T time)
 {
-	T density1 = 1.0;
-	T density2 = 1.1;
-
-	// incorporate buoyancy
-	// iterate through all cells and adjust velocity based on cell temperature, which liquid, and density
-	
-	
-
-
-	T gravity = 0;// /(10*time+1);
-	T buoyancy;
-
-	//This is where we iterate through all 'water' cells and adjust the temperature
-	// 'air' cells will be set to a constant value. 
-
+    T density1 = 1.0;
+    T density2 = 1.1;
+    // incorporate buoyancy
+    // iterate through all cells, adjust velocity based on cell temperature, which liquid, and density
+    T gravity = -9.81;// /(10*time+1);
+    T buoyancy;
+    T tempK;
+    //This is where we iterate through all 'water a and b' cells and adjust the temperature
     //For all dimensions: x, y, and maybe z
     for(int axis=1;axis<=TV::dimension;axis++)
     {
-		// Look at both sides of this cell along this dimension (e.g. Left/Right, Up/Down, Front/Back)
-		for(int axis_side=1;axis_side<=TV::dimension;axis_side++)
+	// Look at both sides of this cell along this dimension (e.g. Left/Right, Up/Down, Front/Back)
+	for(int axis_side=1;axis_side<=TV::dimension;axis_side++)
+	{
+	    //Give this side a unique number relative to this cell (1-4 for 2d) or (1-6 for 3d)
+	    int side=2*(axis-1)+axis_side; //making a value for side...
+	    //Get the offset to get the index of the cell relative to the index of this face
+	    TV_INT interior_cell_offset;
+	    if(axis_side==1)
+	    {
+		interior_cell_offset = TV_INT();
+	    }
+	    else
+	    {
+		interior_cell_offset = -TV_INT::Axis_Vector(axis);
+	    } 
+	    //Step through every face
+	    for(typename GRID<TV>::FACE_ITERATOR iterator(example.mac_grid); iterator.Valid(); iterator.Next())
+	    {
+	        //Grab the index using the offset we calculated above
+                TV_INT cell=iterator.Face_Index()+interior_cell_offset;
+	        //std::cout<<"this is axis side = "<<axis_side;
+	        //std::cout<<", and this is cell = "<<cell<<std::endl;
+	        //std::cout<<", and this is cell x?= "<<cell.x<<std::endl; this returns the x component of this vector which is the cell index value for which axis we are on, i.e. cell.x for axis 2 is y at cell 50 or something. -DTR 05/11/2014
+                if(axis == 2)
 		{
-			//Give this side a unique number relative to this cell (1-4 for 2d) or (1-6 for 3d)
-			int side=2*(axis-1)+axis_side; //making a value for side...
-			
-			//Get the offset to get the index of the cell relative to the index of this face
-			TV_INT interior_cell_offset;
-			if(axis_side==1)
-			{
-				interior_cell_offset = TV_INT();
-			}
-			else
-			{
-				interior_cell_offset = -TV_INT::Axis_Vector(axis);
-			} 
-	
-			//Step through every face
-			for(typename GRID<TV>::FACE_ITERATOR iterator(example.mac_grid); iterator.Valid(); iterator.Next())
-			{
-					//Grab the index using the offset we calculated above
-			        TV_INT cell=iterator.Face_Index()+interior_cell_offset;
-				//std::cout<<"this is axis side = "<<axis_side;
-				//std::cout<<", and this is cell = "<<cell<<std::endl;
-				//std::cout<<", and this is cell x?= "<<cell.x<<std::endl; this returns the x component of this vector, and same for y below. -DTR 05/11/2014
-				//std::cout<<", and this is cell y?= "<<cell.y<<std::endl;
-			        if(example.levelset.phi(cell)<=0 && (axis ==1 || axis == 3))//If this cell is in water
-				{
-					//Calculate Buoyancy based on temperature
-					buoyancy = ((example.resolution)/2.0 - cell.x)/(time*1+1);
-				}
-			        else //In air
-				{
-					//Set Buoyancy to a constant, since we are in the 'air'
-					buoyancy = 0;
-				}
-
-					//We now have gravity & buoyancy. We will combine them and then set velocity based on all external forces. 
-				T externalForces = gravity + buoyancy;
-
-				//int axis=iterator.Axis();
-				if (axis == 1) 
-				{
-		            example.face_velocities.Component(axis)(iterator.Face_Index()) += dt*externalForces; //sneaky gravity was 8.8 put to zero for test
-			//		continue;
-				}
-				else if (axis == 3) 
-				{
-		            example.face_velocities.Component(axis)(iterator.Face_Index()) += (dt*externalForces); //sneaky gravity was 8.8 put to zero for test
-			//		continue;
-				}
-		            //example.face_velocities.Component(axis)(iterator.Face_Index()) -= dt*externalForces; //sneaky gravity was 9.8 put to zero for test
-			}
+		    if(example.levelset.phi(cell)<=(.5/(T)example.resolution) )//If this cell is in water
+	            {//this is the gravity bouyancy block
+		        //Calculate Buoyancy based on temperature
+		        tempK = 20.0 - (((T)cell.x-1.0)/(T)example.resolution)*10.0;
+		        density1 = -0.02*tempK + 1.3;
+		        buoyancy = gravity*density1/0.1 + 98.0;
+		        //std::cout<<"temperature is = "<<tempK<<", at cell = "<<cell.x<<", at resolution = "<<example.resolution<<std::endl;
+		        //std::cout<<"density is = "<<density1<<", at cell = "<<cell.x<<std::endl;
+		        // buoyancy = ((example.resolution)/2.0 - cell.x)/(time*1+1);
+	            }
+                    else//In water b 
+	            {
+	                //Set Buoyancy to a constant, since we are in the 'air'
+		        tempK = 20.0 - (((T)cell.x-1.0)/(T)example.resolution)*10.0;
+		        density2 = 1.0;//-0.02*tempK + 1.3;
+		        buoyancy = gravity*density2/0.1 + 98.0;    
+	            }
+		    //We now have gravity & buoyancy. We will combine them and then set velocity based on all external forces. 
+		    T externalForces = gravity + buoyancy;
+		    //int axis=iterator.Axis();
+	            example.face_velocities.Component(axis)(iterator.Face_Index()+interior_cell_offset) += dt*externalForces;
+		    //sneaky gravity was 9.8 put to zero for test
 		}
+		else
+		{
+	            example.face_velocities.Component(axis)(iterator.Face_Index()+interior_cell_offset) =0;
+		} 
+	        //example.face_velocities.Component(axis)(iterator.Face_Index()) -= dt*externalForces; //sneaky gravity was 9.8 put to zero for test
+	    }
 	}
+    }
 /* 
 	for (typename GRID<TV>::CELL_ITERATOR i(mac_grid); i.Valid(); i.Next()) {
 		product = i.Location()-center;
@@ -237,8 +231,8 @@ Project(const T dt,const T time)
     example.projection.p*=(1/dt); // unscale pressure
 
 //-DTR this code between here and the below comment can be commented out. we are not sure exactly what it does, however, it gives results either way.
-    const int ghost_cells=7;    
-    T delta=20*example.mac_grid.dX.Max();
+/*    const int ghost_cells=7;    
+    T delta=example.resolution*example.mac_grid.dX.Max();//-DTR this value 3 affects how far out velocity is calculated from the main liquid, currently it is example.resolution.
     ARRAY<T,TV_INT> phi_ghost(example.mac_grid.Domain_Indices(3));
     example.boundary->Fill_Ghost_Cells(example.mac_grid,example.levelset.phi,phi_ghost,dt,time,3);
     for(int axis=1;axis<=GRID<TV>::dimension;axis++)
@@ -260,6 +254,7 @@ Project(const T dt,const T time)
 	extrapolate.Set_Custom_Seed_Done(&fixed_face);
         extrapolate.Extrapolate();
     }
+*/
  // this whole section of code was commented out, seemingly this has not caused an error and allows us to say that these two liquids are liquid and not just liquid and air. -DTR 05/11/2014
 }
 //#####################################################################

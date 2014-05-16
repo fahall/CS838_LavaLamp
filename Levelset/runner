@@ -4,5 +4,5 @@ rm -rf water_nocona output
 export PHYSBAM="/PhysBAM-CS838"
 export PLATFORM=nocona
 scons -u TYPE=release CXX=g++ -j 6
-./water_nocona -3d 
-../../opengl_3d/opengl_3d_nocona output/
+./water_nocona  
+../../opengl_2d/opengl_2d_nocona output/
