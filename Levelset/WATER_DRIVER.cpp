@@ -8,7 +8,7 @@
 #include <PhysBAM_Tools/Parallel_Computation/BOUNDARY_THREADED.h>
 #include "WATER_DRIVER.h"
 #include "WATER_EXAMPLE.h"
-
+#include <math.h>
 using namespace PhysBAM;
 namespace{
 template<class TV> void Write_Substep_Helper(void* writer, const std::string& title, int substep, int level)
@@ -145,7 +145,7 @@ Add_Body_Forces(const T dt, const T time)
     for(int axis=1;axis<=TV::dimension;axis++)
     {
 	// Look at both sides of this cell along this dimension (e.g. Left/Right, Up/Down, Front/Back)
-	for(int axis_side=1;axis_side<=TV::dimension;axis_side++)
+	for(int axis_side=1;axis_side<=2;axis_side++)
 	{
 	    //Give this side a unique number relative to this cell (1-4 for 2d) or (1-6 for 3d)
 	    int side=2*(axis-1)+axis_side; //making a value for side...
@@ -172,19 +172,25 @@ Add_Body_Forces(const T dt, const T time)
 		    if(example.levelset.phi(cell)<=(.5/(T)example.resolution) )//If this cell is in water
 	            {//this is the gravity bouyancy block
 		        //Calculate Buoyancy based on temperature
-		        tempK = 20.0 - (((T)cell.x-1.0)/(T)example.resolution)*10.0;
+		        tempK = 15.5 - ((((int)cell.x-1 % (int)example.resolution))/(int)example.resolution)*10.0;
 		        density1 = -0.02*tempK + 1.3;
-		        buoyancy = gravity*density1/0.1 + 98.0;
+		        buoyancy = gravity*density1/0.1 + 98.1;
+			//buoyancy = density1*((((int)cell.x-1 % (int)example.resolution))/(int)example.resolution)*((1.0/example.resolution)*(1.0/example.resolution));    
 		        //std::cout<<"temperature is = "<<tempK<<", at cell = "<<cell.x<<", at resolution = "<<example.resolution<<std::endl;
 		        //std::cout<<"density is = "<<density1<<", at cell = "<<cell.x<<std::endl;
 		        // buoyancy = ((example.resolution)/2.0 - cell.x)/(time*1+1);
+			/***************************************************/
+//			int yPosition = ((int)cell.x % (int)example.resolution);
+//			buoyancy = 0.5 - yPosition * yPosition / example.resolution;
+			/***************************************************/
 	            }
                     else//In water b 
 	            {
 	                //Set Buoyancy to a constant, since we are in the 'air'
-		        tempK = 20.0 - (((T)cell.x-1.0)/(T)example.resolution)*10.0;
 		        density2 = 1.0;//-0.02*tempK + 1.3;
-		        buoyancy = gravity*density2/0.1 + 98.0;    
+    			buoyancy = gravity*density2/0.1 + 98.1;
+			//buoyancy = density2*((((int)cell.x-1 % (int)example.resolution))/(int)example.resolution)*((1.0/example.resolution)*(1.0/example.resolution));    
+			//buoyancy = 0;
 	            }
 		    //We now have gravity & buoyancy. We will combine them and then set velocity based on all external forces. 
 		    T externalForces = gravity + buoyancy;
@@ -223,12 +229,12 @@ template<class TV> void WATER_DRIVER<TV>::
 Project(const T dt,const T time)
 {
     example.Set_Boundary_Conditions(time+dt);
-    example.projection.p*=dt; // rescale pressure for guess
+    example.projection.p*=dt; // rescale pressure for guess -DTR testing proved dt vs 0 is negligible
     example.boundary->Apply_Boundary_Condition_Face(example.mac_grid,example.face_velocities,time+dt);
     example.projection.collidable_solver->Set_Up_Second_Order_Cut_Cell_Method();
     example.projection.Make_Divergence_Free(example.face_velocities,dt,time);
     example.projection.collidable_solver->Set_Up_Second_Order_Cut_Cell_Method(false);
-    example.projection.p*=(1/dt); // unscale pressure
+    example.projection.p*=(1.0/dt); // unscale pressure -DTR set to 0 for testing 05/16/2014 used to be x*=1/dt;
 
 //-DTR this code between here and the below comment can be commented out. we are not sure exactly what it does, however, it gives results either way.
 /*    const int ghost_cells=7;    
@@ -250,7 +256,7 @@ Project(const T dt,const T time)
 	}
         LOG::cout<<"something..."<<std::endl;  // TODO(jontg): If this log statement doesn't appear, the code crashes in release mode...
         T_EXTRAPOLATION_SCALAR extrapolate(face_grid,phi_face,face_velocity,ghost_cells);
-	extrapolate.Set_Band_Width(3);
+	extrapolate.Set_Band_Width(3);// this can be set to larger or smaller values and it extends the influence of the blue liquid region.
 	extrapolate.Set_Custom_Seed_Done(&fixed_face);
         extrapolate.Extrapolate();
     }

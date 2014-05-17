@@ -1,0 +1,67 @@
+cp: cannot stat `water_nocona': No such file or directory
+cp: cannot stat `output': No such file or directory
+scons: Entering directory `/home/d/Desktop/PhysBAM-CS838'
+scons: Reading SConscript files ...
+/home/d/Desktop/PhysBAM-CS838/SConstruct:376: SyntaxWarning: assertion is always true, perhaps remove parentheses?
+  assert(name.startswith('lib'),name)
+
+scons: warning: The Options class is deprecated; use the Variables class instead.
+File "/home/d/Desktop/PhysBAM-CS838/SConstruct", line 14, in <module>
+
+scons: warning: The EnumOption() function is deprecated; use the EnumVariable() function instead.
+File "/home/d/Desktop/PhysBAM-CS838/SConstruct", line 16, in <module>
+
+scons: warning: The BoolOption() function is deprecated; use the BoolVariable() function instead.
+File "/home/d/Desktop/PhysBAM-CS838/SConstruct", line 20, in <module>
+
+scons: warning: BuildDir() and the build_dir keyword have been deprecated;
+	use VariantDir() and the variant_dir keyword instead.
+File "/home/d/Desktop/PhysBAM-CS838/SConstruct", line 123, in <module>
+scons: done reading SConscript files.
+scons: Building targets ...
+scons: building associated VariantDir targets: build/nocona/release/Projects/userpgs/Levelset
+g++ -o build/nocona/release/Projects/userpgs/Levelset/WATER_DRIVER.os -c -march=nocona -msse3 -mfpmath=sse -O3 -funroll-loops -Wall -Winit-self -Woverloaded-virtual -Wstrict-aliasing=2 -fno-strict-aliasing -fPIC -DNDEBUG -DCOMPILE_WITHOUT_DOUBLE_SUPPORT -DCOMPILE_WITHOUT_DYADIC_SUPPORT -DCOMPILE_WITHOUT_RLE_SUPPORT -DCOMPILE_WITHOUT_ZLIB_SUPPORT -DCOMPILE_ID_TYPES_AS_INT -IPublic_Library Projects/userpgs/Levelset/WATER_DRIVER.cpp
+Projects/userpgs/Levelset/WATER_DRIVER.cpp: In member function ‘void PhysBAM::WATER_DRIVER<TV>::Add_Body_Forces(PhysBAM::WATER_DRIVER<TV>::T, PhysBAM::WATER_DRIVER<TV>::T)’:
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:184:63: error: expected ‘;’ before ‘)’ token
+Projects/userpgs/Levelset/WATER_DRIVER.cpp: In member function ‘void PhysBAM::WATER_DRIVER<TV>::Add_Body_Forces(PhysBAM::WATER_DRIVER<TV>::T, PhysBAM::WATER_DRIVER<TV>::T) [with TV = PhysBAM::VECTOR<float, 1>, PhysBAM::WATER_DRIVER<TV>::T = float]’:
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:331:16:   instantiated from here
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:151:10: warning: unused variable ‘side’ [-Wunused-variable]
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:136:7: warning: unused variable ‘density1’ [-Wunused-variable]
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:137:7: warning: unused variable ‘density2’ [-Wunused-variable]
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:142:7: warning: unused variable ‘tempK’ [-Wunused-variable]
+Projects/userpgs/Levelset/WATER_DRIVER.cpp: In member function ‘void PhysBAM::WATER_DRIVER<TV>::Add_Body_Forces(PhysBAM::WATER_DRIVER<TV>::T, PhysBAM::WATER_DRIVER<TV>::T) [with TV = PhysBAM::VECTOR<float, 2>, PhysBAM::WATER_DRIVER<TV>::T = float]’:
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:332:16:   instantiated from here
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:151:10: warning: unused variable ‘side’ [-Wunused-variable]
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:136:7: warning: unused variable ‘density1’ [-Wunused-variable]
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:137:7: warning: unused variable ‘density2’ [-Wunused-variable]
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:142:7: warning: unused variable ‘tempK’ [-Wunused-variable]
+Projects/userpgs/Levelset/WATER_DRIVER.cpp: In member function ‘void PhysBAM::WATER_DRIVER<TV>::Add_Body_Forces(PhysBAM::WATER_DRIVER<TV>::T, PhysBAM::WATER_DRIVER<TV>::T) [with TV = PhysBAM::VECTOR<float, 3>, PhysBAM::WATER_DRIVER<TV>::T = float]’:
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:333:16:   instantiated from here
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:151:10: warning: unused variable ‘side’ [-Wunused-variable]
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:136:7: warning: unused variable ‘density1’ [-Wunused-variable]
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:137:7: warning: unused variable ‘density2’ [-Wunused-variable]
+Projects/userpgs/Levelset/WATER_DRIVER.cpp:142:7: warning: unused variable ‘tempK’ [-Wunused-variable]
+scons: *** [build/nocona/release/Projects/userpgs/Levelset/WATER_DRIVER.os] Error 1
+scons: building terminated because of errors.
+bash: ./water_nocona: No such file or directory
+
+=================== BEGIN STACK BACKTRACE ===================
+#0     (PhysBAM::PROCESS_UTILITIES::Backtrace()+0x1e) [0x7f1478432977]
+#1     (PhysBAM::DEBUG_UTILITIES::Assertion_Failed(char const*, char const*, unsigned int, char const*, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)+0x4c) [0x7f147850cbd7]
+#2     (PhysBAM::DEBUG_UTILITIES::Assertion_Failed(char const*, char const*, unsigned int, char const*, char const*)+0x3a) [0x7f147850ccb7]
+#3     (+0x1e6cda) [0x7f147850ccda]
+#4     (PhysBAM::FILE_UTILITIES::Compare_File_Times_Ignoring_Compression_Suffix(std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)+0) [0x7f14786f1d36]
+#5     () [0x41db99]
+#6     (PhysBAM::BASIC_VISUALIZATION::Parse_Args(int, char**)+0x3f) [0x7f1479302407]
+#7     (PhysBAM::BASIC_VISUALIZATION::Initialize(int, char**)+0x9) [0x7f14793025ed]
+#8     (PhysBAM::BASIC_VISUALIZATION::Initialize_And_Run(int, char**)+0x9) [0x7f1479302619]
+#9     () [0x419b60]
+#10    (__libc_start_main+0xed) [0x7f147735d76d]
+#11    () [0x419c11]
+==================== END STACK BACKTRACE ====================
+
+*** ERROR: Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.cpp:Real_Path:78: Assertion failed, condition = realpath(path.c_str(),real_path)
+
+terminate called after throwing an instance of 'PhysBAM::ASSERTION_ERROR'
+  what():  Public_Library/PhysBAM_Tools/Read_Write/Utilities/FILE_UTILITIES.cpp:Real_Path:78: Assertion failed, condition = realpath(path.c_str(),real_path)
+Aborted (core dumped)

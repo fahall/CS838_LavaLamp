@@ -22,7 +22,7 @@ WATER_EXAMPLE(const STREAM_TYPE stream_type_input, int number_of_threads)
 	initial_time(0),
 	first_frame(0),
 	last_frame(100),
-	frame_rate(24),
+	frame_rate(12),
     restart(0),
 	write_debug_data(false),
 	output_directory("output"),
@@ -246,8 +246,8 @@ Set_Boundary_Conditions(const T time)
 			projection.p(cell)=1;
 		}
     }	
-    
-// */
+*/    
+
 	}
     }
     for(typename GRID<TV>::FACE_ITERATOR iterator(mac_grid);iterator.Valid();iterator.Next())
