@@ -6,7 +6,7 @@ import re
 import tempfile
 
 library_directories="../../../build/nocona/release/Public_Library"
-binary_directory="../../../build/nocona/release/Projects/userpgs/Levelset"
+binary_directory="../../../build/nocona/release/Projects/CS838_LavaLamp/Levelset"
 binary="water"
 
 base_directory=os.path.dirname(sys.argv[0])
